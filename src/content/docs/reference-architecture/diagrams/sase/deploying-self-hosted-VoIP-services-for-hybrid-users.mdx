@@ -61,7 +61,7 @@ The high-level signaling and media paths are shown below:
 ![Figure 4: Both signaling and media (audio, video etc) travel via secured tunnels from remote devices to on-premises clients.](~/assets/images/reference-architecture/deploying-self-hosted-voip-services-for-hybrid-users/figure4.svg "Figure 4: Both signaling and media (audio, video etc) travel via secured tunnels from remote devices to on-premises clients.")
 
 1. Alice registers directly with the SIP server (10.0.50.60) with her CGNAT IP of 100.96.0.12
-2. Bob (also registers directly with the SIP server (10.0.50.60) with his LAN IP of 10.0.50.101
+2. Bob (also registers directly with the SIP server (10.0.50.60) with their LAN IP of 10.0.50.101
 3. When Alice calls Bob, the SIP server will send a SIP INVITE message to Bob at 10.0.50.101
 4. The default gateway for the SIP server is 10.50.0.1, but we have defined a static route such that for destination 100.96.0.0/12, the next hop is the WARP Connector interface (10.0.50.10).
 5. The SIP INVITE message will be sent on the local network to Bob.
