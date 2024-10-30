@@ -22,7 +22,7 @@ This document explains how Cloudflare can be architected with a self-hosted VoIP
 
 ![Figure 1: Cloudflare facilitates secure connectivity from user devices to the network where the SIP server is running.](~/assets/images/reference-architecture/deploying-self-hosted-voip-services-for-hybrid-users/figure1.svg "Figure 1: Cloudflare facilitates secure connectivity from user devices to the network where the SIP server is running.")
 
-The diagram above shows the WARP Connector and our device agent deployed to create a highly performant, reliable connectivity for private VoIP services. Note that Cloudflare will assign remote users an address from the [CGNAT range](/cloudflare-one/connections/connect-networks/private-net/warp-to-warp/), which is used for the Cloudflare created private network.
+The diagram above shows the WARP Connector and our device agent deployed to create a highly performant, reliable connectivity for private VoIP services. Note that Cloudflare will assign remote users an address from the <GlossaryTooltip term="CGNAT IP">CGNAT range</GlossaryTooltip>, which is used for the private network created between device agents.
 
 1. VoIP server resides on a private network with no public IP.
 2. WARP Connector creates a secure tunnel to Cloudflare, and is configured as a virtual router in the private network.
