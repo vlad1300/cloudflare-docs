@@ -25,7 +25,7 @@ This document explains how Cloudflare can be architected with a self-hosted VoIP
 The diagram above shows the WARP Connector and our device agent deployed to create a highly performant, reliable connectivity for private VoIP services. Note that Cloudflare will assign remote users an address from the <GlossaryTooltip term="CGNAT IP">CGNAT range</GlossaryTooltip>, which is used for the private network created between device agents.
 
 1. VoIP server resides on a private network with no public IP.
-2. WARP Connector creates a secure tunnel to Cloudflare, and is configured as a virtual router in the private network.
+2. WARP Connector creates a secure tunnel to Cloudflare and is configured as a virtual router in the private network.
 3. Allow any Cloudflare sourced traffic to reach the VoIP server, but also allow any private network initiated traffic, such as an outbound VoIP call from the server to also route over the Cloudflare tunnel. In the above diagram, we just add a static route on the default gateway of 100.96.0.0/12 (the WARP CGNAT range) via 10.0.50.10 (the WARP Connector virtual router)
 4. Traffic passes through our [secure web gateway](/cloudflare-one/policies/gateway/) (SWG), which applies network level firewall rules to both inbound and outbound traffic.
 5. Device agent's installed on remote user devices connect them to Cloudflare via secure tunnels, which then allow VoIP software to both receive and make calls.
