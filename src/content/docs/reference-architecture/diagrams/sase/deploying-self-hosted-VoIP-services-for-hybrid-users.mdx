@@ -72,7 +72,7 @@ The high-level signaling and media paths are shown below:
 
 Remote users communicating with other remote users or on-premise users via on-premise SIP servers using Cloudflare's WARP Connector, will have a seamless and secure experience for both ends, with key benefits:
 
-1. **Bidirectional Connectivity**: WARP Connector supports bidirectional traffic, which is crucial for remote users communicating with on-premise users. Both signaling and media traffic (SIP/RTP) flow securely between the two, regardless of where the user is physically located. This is done via Cloudflare's global network, using a WireGuard-encrypted tunnel, ensuring data integrity and encryption​.
+1. **Bidirectional Connectivity**: WARP Connector supports bidirectional traffic, which is crucial for remote users communicating with on-premise users. Both signaling and media traffic (SIP/RTP) flow securely between the two, regardless of where the user is physically located. This is done via Cloudflare's global network, using an encrypted tunnel, ensuring data integrity and encryption​.
 
 2. **Private Communication Over CGNAT**: The WARP Connector assigns Carrier-Grade NAT (CGNAT) IPs to devices, which allows remote users to securely communicate with on-premise users over private networks. This ensures that communication remains isolated from the public Internet, enhancing security. The CGNAT functionality means that remote and on-premise users can communicate as though they are on the same network​.
 
