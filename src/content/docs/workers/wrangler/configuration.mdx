@@ -4,7 +4,8 @@ title: Configuration
 head:
   - tag: title
     content: Configuration - Wrangler
-description: Use a `wrangler.toml` configuration file to customize the
+description:
+  Use a `wrangler.toml` or `wrangler.json` configuration file to customize the
   development and deployment setup for your Worker project and other Developer
   Platform products.
 ---
@@ -21,6 +22,10 @@ Wrangler currently supports an `--experimental-json-config` flag, which will rea
 It is best practice to treat `wrangler.toml` as the [source of truth](#source-of-truth) for configuring a Worker.
 
 ## Sample `wrangler.toml` configuration
+
+import { WranglerConfig } from "~/components";
+
+<WranglerConfig>
 
 ```toml
 # Top-level configuration
@@ -43,6 +48,8 @@ kv_namespaces = [
   { binding = "<MY_NAMESPACE>", id = "<STAGING_KV_ID>" }
 ]
 ```
+
+</WranglerConfig>
 
 ## Environments
 
@@ -238,6 +245,8 @@ There are three types of [routes](/workers/configuration/routing/): [Custom Doma
 
 Example:
 
+<WranglerConfig>
+
 ```toml title="wrangler.toml"
 route = { pattern = "example.com", custom_domain = true }
 
@@ -248,6 +257,7 @@ routes = [
 ]
 ```
 
+</WranglerConfig>
 ### Routes
 
 [Routes](/workers/configuration/routing/routes/) allow users to map a URL pattern to a Worker. A route can be configured as a zone ID route, a zone name route, or a simple route.
@@ -264,12 +274,15 @@ routes = [
 
 Example:
 
+<WranglerConfig>
+
 ```toml title="wrangler.toml"
 routes = [
 	{ pattern = "subdomain.example.com/*", zone_id = "<YOUR_ZONE_ID>" }
 ]
 ```
 
+</WranglerConfig>
 #### Zone name route
 
 - `pattern` <Type text="string" /> <MetaInfo text="required" />
@@ -282,22 +295,28 @@ routes = [
 
 Example:
 
+<WranglerConfig>
+
 ```toml title="wrangler.toml"
 routes = [
 	{ pattern = "subdomain.example.com/*", zone_name = "example.com" }
 ]
 ```
 
+</WranglerConfig>
 #### Simple route
 
 This is a simple route that only requires a pattern.
 
 Example:
 
+<WranglerConfig>
+
 ```toml title="wrangler.toml"
 route = "example.com/*"
 ```
 
+</WranglerConfig>
 ### `workers.dev`
 
 Cloudflare Workers accounts come with a `workers.dev` subdomain that is configurable in the Cloudflare dashboard.
@@ -306,10 +325,13 @@ Cloudflare Workers accounts come with a `workers.dev` subdomain that is configur
 
   - Whether the Worker runs on a custom `workers.dev` account subdomain. Defaults to `true`.
 
+<WranglerConfig>
+
 ```toml title="wrangler.toml"
 workers_dev = false
 ```
 
+</WranglerConfig>
 ## Triggers
 
 Triggers allow you to define the `cron` expression to invoke your Worker's `scheduled` function. Refer to [Supported cron expressions](/workers/configuration/cron-triggers/#supported-cron-expressions).
@@ -320,6 +342,8 @@ Triggers allow you to define the `cron` expression to invoke your Worker's `sche
   - To disable a Cron Trigger, set `crons = []`. Commenting out the `crons` key will not disable a Cron Trigger.
 
 Example:
+
+<WranglerConfig>
 
 ```toml title="wrangler.toml"
 [triggers]
@@ -345,7 +369,7 @@ enabled = true
 head_sampling_rate = 0.1 # 10% of requests are logged
 ```
 
-
+</WranglerConfig>
 ## Custom builds
 
 You can configure a custom build step that will be run before your Worker is deployed. Refer to [Custom builds](/workers/wrangler/custom-builds/).
@@ -364,6 +388,8 @@ You can configure a custom build step that will be run before your Worker is dep
 
 Example:
 
+<WranglerConfig>
+
 ```toml title="wrangler.toml"
 [build]
 command = "npm run build"
@@ -371,6 +397,7 @@ cwd = "build_cwd"
 watch_dir = "build_watch_dir"
 ```
 
+</WranglerConfig>
 ## Limits
 
 You can impose limits on your Worker's behavior at runtime. Limits are only supported for the [Standard Usage Model](/workers/platform/pricing/#example-pricing-standard-usage-model). Limits are only enforced when deployed to Cloudflare's network, not in local development. The CPU limit can be set to a maximum of 30,000 milliseconds (30 seconds).
@@ -383,11 +410,14 @@ You can impose limits on your Worker's behavior at runtime. Limits are only supp
 
 Example:
 
+<WranglerConfig>
+
 ```toml title="wrangler.toml"
 [limits]
 cpu_ms = 100
 ```
 
+</WranglerConfig>
 ## Bindings
 
 ### Browser Rendering
@@ -402,6 +432,8 @@ A [browser binding](/workers/runtime-apis/bindings/) will provide your Worker wi
 
 Example:
 
+<WranglerConfig>
+
 ```toml title="wrangler.toml"
 browser = { binding = "<BINDING_NAME>" }
 
@@ -411,6 +443,7 @@ browser = { binding = "<BINDING_NAME>" }
 binding = "<BINDING_NAME>"
 ```
 
+</WranglerConfig>
 ### D1 databases
 
 [D1](/d1/) is Cloudflare's serverless SQL database. A Worker can query a D1 database (or databases) by creating a [binding](/workers/runtime-apis/bindings/) to each database for D1's [client API](/d1/build-with-d1/d1-client-api/).
@@ -447,6 +480,8 @@ When using Wrangler in the default local development mode, files will be written
 
 Example:
 
+<WranglerConfig>
+
 ```toml title="wrangler.toml"
 d1_databases = [
   { binding = "<BINDING_NAME>", database_name = "<DATABASE_NAME>", database_id = "<DATABASE_ID>" }
@@ -460,6 +495,7 @@ database_name = "<DATABASE_NAME>"
 database_id = "<DATABASE_ID>"
 ```
 
+</WranglerConfig>
 ### Dispatch namespace bindings (Workers for Platforms)
 
 Dispatch namespace bindings allow for communication between a [dynamic dispatch Worker](/cloudflare-for-platforms/workers-for-platforms/reference/how-workers-for-platforms-works/#dynamic-dispatch-worker) and a [dispatch namespace](/cloudflare-for-platforms/workers-for-platforms/reference/how-workers-for-platforms-works/#dispatch-namespace). Dispatch namespace bindings are used in [Workers for Platforms](/cloudflare-for-platforms/workers-for-platforms/). Workers for Platforms helps you deploy serverless functions programmatically on behalf of your customers.
@@ -477,6 +513,8 @@ Dispatch namespace bindings allow for communication between a [dynamic dispatch 
   - `service` <Type text="string" /> <MetaInfo text="required" /> The name of the [outbound Worker](/cloudflare-for-platforms/workers-for-platforms/configuration/outbound-workers/) to bind to.
   - `parameters` array optional A list of parameters to pass data from your [dynamic dispatch Worker](/cloudflare-for-platforms/workers-for-platforms/reference/how-workers-for-platforms-works/#dynamic-dispatch-worker) to the [outbound Worker](/cloudflare-for-platforms/workers-for-platforms/configuration/outbound-workers/).
 
+<WranglerConfig>
+
 ```toml title="wrangler.toml"
 [[dispatch_namespaces]]
 binding = "<BINDING_NAME>"
@@ -485,6 +523,7 @@ outbound = {service = "<WORKER_NAME>", parameters = ["params_object"]}
 
 ```
 
+</WranglerConfig>
 ### Durable Objects
 
 [Durable Objects](/durable-objects/) provide low-latency coordination and consistent storage for the Workers platform.
@@ -509,6 +548,8 @@ To bind Durable Objects to your Worker, assign an array of the below object to t
 
 Example:
 
+<WranglerConfig>
+
 ```toml title="wrangler.toml"
 durable_objects.bindings = [
   { name = "<BINDING_NAME>", class_name = "<CLASS_NAME>" }
@@ -522,6 +563,7 @@ class_name = "<CLASS_NAME>"
 
 ```
 
+</WranglerConfig>
 #### Migrations
 
 When making changes to your Durable Object classes, you must perform a migration. Refer to [Durable Object migrations](/durable-objects/reference/durable-objects-migrations/).
@@ -544,6 +586,8 @@ When making changes to your Durable Object classes, you must perform a migration
 
 Example:
 
+<WranglerConfig>
+
 ```toml title="wrangler.toml"
 [[migrations]]
 tag = "v1" # Should be unique for each entry
@@ -555,6 +599,7 @@ renamed_classes = [{from = "DurableObjectExample", to = "UpdatedName" }] # Array
 deleted_classes = ["DeprecatedClass"] # Array of deleted class names
 ```
 
+</WranglerConfig>
 ### Email bindings
 
 <Render
@@ -601,6 +646,8 @@ Example:
 
 Example:
 
+<WranglerConfig>
+
 ```toml title="wrangler.toml"
 # required for database drivers to function
 compatibility_flags = ["nodejs_compat_v2"]
@@ -610,6 +657,7 @@ binding = "<BINDING_NAME>"
 id = "<ID>"
 ```
 
+</WranglerConfig>
 ### KV namespaces
 
 [Workers KV](/kv/api/) is a global, low-latency, key-value data store. It stores data in a small number of centralized data centers, then caches that data in Cloudflare’s data centers after access.
@@ -636,6 +684,8 @@ When using Wrangler in the default local development mode, files will be written
 
 Example:
 
+<WranglerConfig>
+
 ```toml title="wrangler.toml"
 kv_namespaces = [
   { binding = "<BINDING_NAME1>", id = "<NAMESPACE_ID1>" },
@@ -653,6 +703,32 @@ binding = "<BINDING_NAME2>"
 id = "<NAMESPACE_ID2>"
 ```
 
+</WranglerConfig>
+### Observability
+
+The [Observability](/workers/observability/logs/workers-logs) setting allows you to automatically ingest, store, filter, and analyze logging data emitted from Cloudflare Workers directly from your Cloudflare Worker's dashboard.
+
+- `enabled` boolean required
+
+  - When set to `true` on a Worker, logs for the Worker are persisted. Defaults to `true` for all new Workers.
+
+- `head_sampling_rate` number optional
+  - A number between 0 and 1, where 0 indicates zero out of one hundred requests are logged, and 1 indicates every request is logged. If `head_sampling_rate` is unspecified, it is configured to a default value of 1 (100%). Read more about [head-based sampling](/workers/observability/logs/workers-logs/#head-based-sampling).
+
+Example:
+
+<WranglerConfig>
+
+```toml title="wrangler.toml"
+[observability]
+enabled = true
+
+[observability]
+enabled = true
+head_sampling_rate = 0.1 # 10% of requests are logged
+```
+
+</WranglerConfig>
 ### Queues
 
 [Queues](/queues/) is Cloudflare's global message queueing service, providing [guaranteed delivery](/queues/reference/delivery-guarantees/) and [message batching](/queues/configuration/batching-retries/). To interact with a queue with Workers, you need a producer Worker to send messages to the queue and a consumer Worker to pull batches of messages out of the Queue. A single Worker can produce to and consume from multiple Queues.
@@ -673,6 +749,8 @@ To bind Queues to your producer Worker, assign an array of the below object to t
 
 Example:
 
+<WranglerConfig>
+
 ```toml title="wrangler.toml"
 [[queues.producers]]
   binding = "<BINDING_NAME>"
@@ -680,6 +758,7 @@ Example:
   delivery_delay = 60 # Delay messages by 60 seconds before they are delivered to a consumer
 ```
 
+</WranglerConfig>
 To bind Queues to your consumer Worker, assign an array of the below object to the `[[queues.consumers]]` key.
 
 - `queue` <Type text="string" /> <MetaInfo text="required" />
@@ -715,6 +794,8 @@ To bind Queues to your consumer Worker, assign an array of the below object to t
 
 Example:
 
+<WranglerConfig>
+
 ```toml title="wrangler.toml"
 [[queues.consumers]]
   queue = "my-queue"
@@ -726,6 +807,7 @@ Example:
   retry_delay = 120 # Delay retried messages by 2 minutes before re-attempting delivery
 ```
 
+</WranglerConfig>
 ### R2 buckets
 
 [Cloudflare R2 Storage](/r2) allows developers to store large amounts of unstructured data without the costly egress bandwidth fees associated with typical cloud storage services.
@@ -756,6 +838,8 @@ When using Wrangler in the default local development mode, files will be written
 
 Example:
 
+<WranglerConfig>
+
 ```toml title="wrangler.toml"
 r2_buckets  = [
   { binding = "<BINDING_NAME1>", bucket_name = "<BUCKET_NAME1>"},
@@ -773,6 +857,7 @@ binding = "<BINDING_NAME2>"
 bucket_name = "<BUCKET_NAME2>"
 ```
 
+</WranglerConfig>
 ### Vectorize indexes
 
 A [Vectorize index](/vectorize/) allows you to insert and query vector embeddings for semantic search, classification and other vector search use-cases.
@@ -789,6 +874,8 @@ To bind Vectorize indexes to your Worker, assign an array of the below object to
 
 Example:
 
+<WranglerConfig>
+
 ```toml title="wrangler.toml"
 vectorize  = [
   { binding = "<BINDING_NAME>", index_name = "<INDEX_NAME>"}
@@ -801,6 +888,7 @@ binding = "<BINDING_NAME>"
 index_name = "<INDEX_NAME>"
 ```
 
+</WranglerConfig>
 ### Service bindings
 
 A service binding allows you to send HTTP requests to another Worker without those requests going over the Internet. The request immediately invokes the downstream Worker, reducing latency as compared to a request to a third-party service. Refer to [About Service Bindings](/workers/runtime-apis/bindings/service-bindings/).
@@ -821,6 +909,8 @@ To bind other Workers to your Worker, assign an array of the below object to the
 
 Example:
 
+<WranglerConfig>
+
 ```toml title="wrangler.toml"
 services = [
   { binding = "<BINDING_NAME>", service = "<WORKER_NAME>", entrypoint = "<ENTRYPOINT_NAME>" }
@@ -834,6 +924,7 @@ service = "<WORKER_NAME>"
 entrypoint = "<ENTRYPOINT_NAME>"
 ```
 
+</WranglerConfig>
 ### Static assets
 
 Refer to [Assets](#assets).
@@ -854,6 +945,8 @@ To bind Analytics Engine datasets to your Worker, assign an array of the below o
 
 Example:
 
+<WranglerConfig>
+
 ```toml
 analytics_engine_datasets = [{ binding = "<BINDING_NAME>", dataset = "<DATASET_NAME>" }]
 
@@ -864,6 +957,7 @@ binding = "<BINDING_NAME>"
 dataset = "<DATASET_NAME>"
 ```
 
+</WranglerConfig>
 ### mTLS Certificates
 
 To communicate with origins that require client authentication, a Worker can present a certificate for mTLS in subrequests. Wrangler provides the `mtls-certificate` [command](/workers/wrangler/commands#mtls-certificate) to upload and manage these certificates.
@@ -879,6 +973,8 @@ To create a [binding](/workers/runtime-apis/bindings/) to an mTLS certificate fo
   - The ID of the certificate. Wrangler displays this via the `mtls-certificate upload` and `mtls-certificate list` commands.
 
 Example of a `wrangler.toml` configuration that includes an mTLS certificate binding:
+
+<WranglerConfig>
 
 ```toml title="wrangler.toml"
 mtls_certificates = [
@@ -897,6 +993,7 @@ binding = "<BINDING_NAME2>"
 certificate_id = "<CERTIFICATE_ID2>"
 ```
 
+</WranglerConfig>
 mTLS certificate bindings can then be used at runtime to communicate with secured origins via their [`fetch` method](/workers/runtime-apis/bindings/mtls).
 
 ### Workers AI
@@ -914,6 +1011,8 @@ Unlike other bindings, this binding is limited to one AI binding per Worker proj
 
 Example:
 
+<WranglerConfig>
+
 ```toml
 ai = { binding = "<AI>" }
 
@@ -923,6 +1022,7 @@ ai = { binding = "<AI>" }
 binding = "AI" # available in your Worker code on `env.AI`
 ```
 
+</WranglerConfig>
 ## Assets
 
 [Static assets](/workers/static-assets/) allows developers to run front-end websites on Workers. You can configure the directory of assets, an optional runtime binding, and routing configuration options.
@@ -949,10 +1049,13 @@ The following options are available under the `assets` key.
 
 Example:
 
+<WranglerConfig>
+
 ```toml title="wrangler.toml"
 assets = { directory = "./public", binding = "ASSETS", html_handling = "force-trailing-slash", not_found_handling = "404-page" }
 ```
 
+</WranglerConfig>
 ## Bundling
 
 Wrangler can operate in two modes: the default bundling mode and `--no-bundle` mode.
@@ -977,12 +1080,15 @@ The `rules` key will be an array of the below object.
 
 Example:
 
+<WranglerConfig>
+
 ```toml title="wrangler.toml"
 rules = [
   { type = "Text", globs = ["**/*.md"], fallthrough = true }
 ]
 ```
 
+</WranglerConfig>
 ### Importing modules within a Worker
 
 You can import and refer to these modules within your Worker, like so:
@@ -1006,6 +1112,16 @@ Any files that match `rules` will also be included as unbundled, external module
 
 See https://developers.cloudflare.com/workers/wrangler/bundling/ for more details and examples.
 
+### Find additional modules
+
+Normally Wrangler will only include additional modules that are statically imported in your source code as in the example above.
+By setting `find_additional_modules` to `true` in your configuration file, Wrangler will traverse the file tree below `base_dir`.
+Any files that match `rules` will also be included as unbundled, external modules in the deployed Worker.
+`base_dir` defaults to the directory containing your `main` entrypoint.
+
+See https://developers.cloudflare.com/workers/wrangler/bundling/ for more details and examples.
+
+</WranglerConfig>
 ## Local development settings
 
 You can configure various aspects of local development, such as the local protocol or port.
@@ -1032,6 +1148,8 @@ You can configure various aspects of local development, such as the local protoc
 
 Example:
 
+<WranglerConfig>
+
 ```toml title="wrangler.toml"
 [dev]
 ip = "192.168.1.1"
@@ -1039,6 +1157,7 @@ port = 8080
 local_protocol = "http"
 ```
 
+</WranglerConfig>
 ### Secrets
 
 [Secrets](/workers/configuration/secrets/) are a type of binding that allow you to [attach encrypted text values](/workers/wrangler/commands/#secret) to your Worker.
@@ -1049,15 +1168,19 @@ local_protocol = "http"
 
 You can configure Wrangler to replace all calls to import a particular package with a module of your choice, by configuring the `alias` field:
 
+<WranglerConfig>
+
 ```toml title="wrangler.toml"
 [alias]
 "foo" = "./replacement-module-filepath"
 ```
 
+</WranglerConfig>
 ```js title="replacement-module-filepath.js"
 export const bar = "baz";
 ```
 
+</WranglerConfig>
 With the configuration above, any calls to `import` or `require()` the module `foo` will be aliased to point to your replacement module:
 
 ```js
@@ -1066,6 +1189,7 @@ import { bar } from "foo";
 console.log(bar); // returns "baz"
 ```
 
+</WranglerConfig>
 ### Example: Aliasing dependencies from NPM
 
 You can use module aliasing to provide an implementation of an NPM package that does not work on Workers — even if you only rely on that NPM package indirectly, as a dependency of one of your Worker's dependencies.
@@ -1076,32 +1200,40 @@ For example, some NPM packages depend on [`node-fetch`](https://www.npmjs.com/pa
 
 You can alias all imports of `node-fetch` to instead point directly to the `fetch()` API that is built into the Workers runtime:
 
+<WranglerConfig>
+
 ```toml title="wrangler.toml"
 [alias]
 "node-fetch" = "./fetch-nolyfill"
 ```
 
+</WranglerConfig>
 ```js title="./fetch-nolyfill"
 export default fetch;
 ```
 
+</WranglerConfig>
 ### Example: Aliasing Node.js APIs
 
 You can use module aliasing to provide your own polyfill implementation of a Node.js API that is not yet available in the Workers runtime.
 
 For example, let’s say the NPM package you rely on calls [`fs.readFile`](https://nodejs.org/api/fs.html#fsreadfilepath-options-callback). You can alias the fs module by adding the following to your Worker’s wrangler.toml:
 
+<WranglerConfig>
+
 ```toml title="wrangler.toml"
 [alias]
 "fs" = "./fs-polyfill"
 ```
 
+</WranglerConfig>
 ```js title="./fs-polyfill"
 export function readFile() {
 	// ...
 }
 ```
 
+</WranglerConfig>
 In many cases, this allows you to work provide just enough of an API to make a dependency work. You can learn more about Cloudflare Workers' support for Node.js APIs on the [Cloudflare Workers Node.js API documentation page](/workers/runtime-apis/nodejs/).
 
 ## Source maps
@@ -1114,11 +1246,14 @@ In many cases, this allows you to work provide just enough of an API to make a d
 
 Example:
 
+<WranglerConfig>
+
 ```toml title="wrangler.toml"
 upload_source_maps = true
 
 ```
 
+</WranglerConfig>
 ## Workers Sites
 
 :::note[Cloudflare Pages]
@@ -1142,6 +1277,8 @@ Consider using [Cloudflare Pages](/pages/) for hosting static applications inste
 
 Example:
 
+<WranglerConfig>
+
 ```toml title="wrangler.toml"
 [site]
 bucket = "./public"
@@ -1149,6 +1286,7 @@ include = ["upload_dir"]
 exclude = ["ignore_dir"]
 ```
 
+</WranglerConfig>
 ## Proxy support
 
 Corporate networks will often have proxies on their networks and this can sometimes cause connectivity issues. To configure Wrangler with the appropriate proxy details, use the below environmental variables:
@@ -1166,6 +1304,7 @@ Example:
 $ HTTP_PROXY=http://localhost:8080 wrangler dev
 ```
 
+</WranglerConfig>
 If your IT team has configured your computer's proxy settings, be aware that the first non-empty environment variable in this list will be used when Wrangler makes outgoing requests.
 
 For example, if both `https_proxy` and `http_proxy` are set, Wrangler will only use `https_proxy` for outgoing requests.
