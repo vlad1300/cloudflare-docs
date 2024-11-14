@@ -1,0 +1,36 @@
+---
+title: How Cloudflare prevents email-based phishing attacks
+pcx_content_type: overview
+sidebar:
+  order: 4
+---
+
+Email-based phishing attacks can be divided into two main categories: Those with and without a malicious URL or attachment.
+
+Email Security uses a variety of factors to determine whether a given email message, a web domain or URL, or specific network traffic is part of a phishing campaign (marked with a `Malicious` [disposition](/cloudflare-one/email-security/reference/dispositions-and-attributes/#dispositions)) or other common campaigns (for example, `Spam`).
+
+These small pattern assessments are dynamic in nature and — in many cases — no single one in and of itself will determine the final verdict. Instead, our automated systems use a combination of factors and non-factors to clearly distinguish between a valid phishing campaign and benign traffic.
+
+Emails without a Malicious URL or attachment typically fall into the Business Email Compromise (BEC) category. BEC is a type of social engineering attack. In a BEC attack, the attacker falsifies an email message to trick the victim into performing some action - most often transferring money to an account or location the attacker controls.
+
+To detect these low volume, malicious emails that do not contain malware, malicious links or email attachments, Cloudflare uses machine learning analysis, analyzing email threads, content, sentiment and context via message lexical analysis, subject analysis, word count assessment and sender analysis. Display names are also compared with known executive names for similarity using several matching modeling including the [Levenshtein Algorithm](https://en.wikipedia.org/wiki/Levenshtein_distance), and if matched, lagged when a sender is organization from an unknown domain.
+
+When malicious payloads or URLs are included or attached to an email, additional steps are taken to protect your users. For example:
+
+- **Attack type**:  Malicious payload attached to the message.
+- **Example**: Classic campaign technique which utilizes a variety of active attachment types (EXE, DOC, XLS, PPT, OLE, PDF, and more) as the malicious payload for ransomware attacks, Trojans, viruses, and malware.
+- **Detections applied**: Machine learning (ML) models on binary bitmaps of the payload as well as higher-level attributes of the payload, with specific focus on signatureless detections for maximum coverage. Additionally, for relevant active payloads, the engine invokes a real-time sandbox to assess behavior and determine maliciousness.
+
+- **Attack type**: Encrypted malicious payload attached to the message, with password in message body as text.
+- **Example**: Campaigns that induce the user to apply a password within the message body to the attachment.
+- **Detections applied**: Real-time lexical parsing of message body for password extraction and ML models on binary bitmaps of the payload, signatureless detections for maximum coverage.
+
+- **Attack type**: Malicious URLs within message body.
+- **Example**: Typical phish campaigns with a socially engineered call to action URL that will implant malware (for example, watering hole attacks, malvertising, or scripting attacks).
+- **Detections applied**: Continuous web crawling, followed by real-time link crawling for a select group of suspicious urls, followed by machine learning applied to URL patterns in combination with other pattern rules and topic-based machine learning models for exhaustive coverage of link-based attacks.
+
+- **Attack type**: Malicious payload linked through a Malicious payload linked through a URL in a messageURL in a message.
+- **Example**: Campaigns where the URL links through to a remote malicious attachment (for example, in a .doc or .pdf file).
+- **Detections applied**: Remote document and/or attachment extraction followed by ML detection tree on the payload, instant crawl of links.
+
+Additional attack types and detections can be found [here](/cloudflare-one/email-security/reference/how-es-detects-phish/).
