@@ -60,17 +60,32 @@ You must press enter after you input your Application domain for it to save. You
 
 6. Go to the next page.
 7. Add a name for your access policy (for example, "Allow employees access to preview URLs for my-worker").
-8. In the **Configure rules** section create a new rule with the **Emails** selector, or any other attributes which you wish to gate access to previews with. 
+8. In the **Configure rules** section create a new rule with the **Emails** selector, or any other attributes which you wish to gate access to previews with.
 9. Enter the emails you want to authorize. View [access policies](/cloudflare-one/policies/access/#selectors) to learn about configuring alternate rules.
 10. Go to the next page.
 11. Add application.
 
 ## Making Preview URLs inaccessible
 
-Preview URLs run on your [`workers.dev` subdomain](/workers/configuration/routing/workers-dev/). To make preview URLs inaccessible, you must disable your Workers `workers.dev` subdomain. Learn how to [disable your Workers `workers.dev` subdomain](/workers/configuration/routing/workers-dev/#disabling-workersdev).
+Preview URLs run on your [`workers.dev` subdomain](/workers/configuration/routing/workers-dev/). You can disable preview URLs to make them inaccessible.
+
+### Disable on the Cloudflare dashboard
+
+TODO: Not finished this yet
+
+### Disable in Wrangler
+
+In your `wrangler.toml` you can add `preview_urls = false` to disable preview URLs from generating and being accessible.
+
+```toml
+name = "my-worker"
+compatibility_date = "2024-01-01"
+preview_urls = false
+```
 
 ## Limitations
 
 - Preview URLs are not generated for Workers that implement a [Durable Object](/durable-objects/).
 - Preview URLs are not currently generated for [Workers for Platforms](/cloudflare-for-platforms/workers-for-platforms/) [user Workers](/cloudflare-for-platforms/workers-for-platforms/reference/how-workers-for-platforms-works/#user-workers). This is a temporary limitation, we are working to remove it.
 - You cannot currently configure Preview URLs to run on a subdomain other than [`workers.dev`](/workers/configuration/routing/workers-dev/).
+- You cannot use `wrangler tail`, [Workers Logs](/workers/observability/logs/workers-logs) or other similar tools to view logs for preview URLs.
