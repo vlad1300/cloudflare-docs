@@ -10,3 +10,32 @@ head: []
 description: Consider information about how Cloudflare is implementing post-quantum cryptography to protect you against store now, decrypt later.
 ---
 
+For years, Cloudflare has been researching and [writing about post quantum](https://blog.cloudflare.com/tag/post-quantum/).
+
+To protect you against the risk of [store now, decrypt later](https://en.wikipedia.org/wiki/Harvest_now,_decrypt_later), and considering all the [connections](#three-connections-in-the-life-of-a-request) that take place when your website or application is on Cloudflare, we have deployed and are actively expanding the use of post-quantum hybrid key agreement.
+
+:::caution[TLS 1.3]
+Post-quantum key agreements are only supported in protocols based on TLS 1.3 (including HTTP/3) and are disabled for websites in [FIPS mode](/cloudflare-one/policies/gateway/http-policies/tls-decryption/#fips-compliance).
+:::
+
+## Three building blocks of TLS
+
+For a TLS handshake to happen, three types of encryption have to be in place:
+
+- **Symmetric ciphers:** used to encrypt and decrypt data, ensuring confidentiality and integrity (such as `CHACHA20-POLY1305`).
+- **Key agreement:** a cryptographic protocol with which client and server can safely agree on a shared key (such as `ECDH`).
+- **Signature algorithms:** cryptographic algorithms used to generate the digital signatures in TLS certificates (such as `RSA` and `ECDSA`).
+
+As explained in our [blog post](https://blog.cloudflare.com/pq-2024/#two-migrations), the first, most urgent migration that needs to happen has to do with key agreement.
+
+### Hybrid key agreement
+
+## Three connections in the life of a request
+
+### Visitor to Cloudflare
+
+As of [october 2023](https://blog.cloudflare.com/post-quantum-for-all/), all websites and APIs served through Cloudflare support post-quantum hybrid key agreement.
+
+### Internal services
+
+### Cloudflare to your origin
