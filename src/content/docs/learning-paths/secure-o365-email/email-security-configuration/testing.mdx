@@ -1,0 +1,17 @@
+---
+title: Testing before production deployment
+pcx_content_type: how-to
+sidebar:
+  order: 6
+---
+
+Email Security can be deployed quickly. Setting up the Graph API only takes a few minutes. 
+
+Email Security uses machine learning techniques to better understand your email environment. For this reason, there is a 5-7 day baseline period in which False Negative and False Positives are to be expected while the system learns what your normal mail patterns are. 
+
+Moving from a cold start straight into production is not recommended. 
+
+You can use the following testing methods which provide visibility during the baseline period without disruption to mail flow:
+
+- [Microsoft O365 Journaling Setup](/cloudflare-one/email-security/setup/post-delivery-deployment/bcc-journaling/journaling-setup/office365-journaling/)
+- [Microsoft O365 Graph API Setup](/cloudflare-one/email-security/setup/post-delivery-deployment/api/)
