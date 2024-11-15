@@ -20,10 +20,10 @@ Post-quantum key agreements are only supported in protocols based on TLS 1.3 (in
 
 ## Three building blocks of TLS
 
-Before TLS can protect your communications, three cryptographic algorithms have to be agreed on during the TLS handshake:
+Before TLS can protect your communications, three cryptographic algorithms have to be agreed on during the [TLS handshake](https://www.cloudflare.com/learning/ssl/what-happens-in-a-tls-handshake/):
 
-- **Symmetric ciphers:** used to encrypt and decrypt data, ensuring confidentiality and integrity (such as `CHACHA20-POLY1305`).
-- **Key agreement:** a cryptographic protocol with which client and server can safely agree on a shared key (such as `ECDH`).
+- **Symmetric ciphers:** algorithms used to encrypt and decrypt data, ensuring confidentiality and integrity (such as `CHACHA20-POLY1305`).
+- **Key agreement:** a cryptographic protocol that allows client and server to safely agree on a shared key (such as `ECDH`).
 - **Signature algorithms:** cryptographic algorithms used to generate the digital signatures in TLS certificates (such as `RSA` and `ECDSA`).
 
 As explained in our [blog post](https://blog.cloudflare.com/pq-2024/#two-migrations), the first, most urgent migration that needs to happen has to do with key agreement.
