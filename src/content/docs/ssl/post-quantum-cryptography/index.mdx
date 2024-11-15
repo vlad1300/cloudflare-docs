@@ -20,7 +20,7 @@ Post-quantum key agreements are only supported in protocols based on TLS 1.3 (in
 
 ## Three building blocks of TLS
 
-For a TLS handshake to happen, three types of encryption have to be in place:
+Before TLS can protect your communications, three cryptographic algorithms have to be agreed on during the TLS handshake:
 
 - **Symmetric ciphers:** used to encrypt and decrypt data, ensuring confidentiality and integrity (such as `CHACHA20-POLY1305`).
 - **Key agreement:** a cryptographic protocol with which client and server can safely agree on a shared key (such as `ECDH`).
