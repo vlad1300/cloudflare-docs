@@ -1,0 +1,51 @@
+---
+productName: AI Gateway
+entries:
+  - term: cf-aig-event-id
+    general_definition: |-
+      Unique identifier for an AI Gateway event, used to trace specific events through the system.
+
+  - term: cf-aig-step
+    general_definition: |-
+      Identifies the processing step in the AI Gateway flow for better tracking and debugging.
+
+  - term: cf-aig-log-id
+    general_definition: |-
+      Identifier for logging specific to the AI Gateway, enabling detailed tracking of requests.
+
+  - term: cf-aig-collect-log
+    general_definition: |-
+      Specifies if logging data should be collected for a particular request in the AI Gateway.
+
+  - term: cf-aig-custom-cost
+    general_definition: |-
+      Allows the customization of request cost within AI Gateway to reflect user-defined parameters.
+
+  - term: cf-aig-cache-key
+    general_definition: |-
+      Custom key to determine cache storage and retrieval in the AI Gateway.
+
+  - term: cf-aig-cache-status
+    general_definition: |-
+      Status indicator for AI Gateway caching, showing if a request was served from cache.
+
+  - term: cf-aig-metadata
+    general_definition: |-
+      Additional metadata associated with a request in the AI Gateway.
+
+  - term: cf-aig-cache-ttl
+    general_definition: |-
+      Specifies the cache time-to-live for AI Gateway responses.
+
+  - term: cf-aig-skip-cache
+    general_definition: |-
+      Header to bypass caching for a specific request in the AI Gateway.
+
+  # Deprecated headers
+  - term: cf-cache-ttl
+    general_definition: |-
+      Deprecated: This header is replaced by `cf-aig-cache-ttl` in AI Gateway. It specifies cache time-to-live.
+
+  - term: cf-skip-cache
+    general_definition: |-
+      Deprecated: This header is replaced by `cf-aig-skip-cache` in AI Gateway. It bypasses caching for a specific request.
