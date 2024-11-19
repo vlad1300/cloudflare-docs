@@ -10,12 +10,12 @@ head: []
 description: Get an overview of how Cloudflare is implementing post-quantum cryptography to protect you against store now, decrypt later.
 ---
 
-For years, Cloudflare has been researching and [writing about post quantum](https://blog.cloudflare.com/tag/post-quantum/).
+For years, Cloudflare has been researching and [writing about post-quantum](https://blog.cloudflare.com/tag/post-quantum/).
 
-To protect you against the risk of [store now, decrypt later](https://en.wikipedia.org/wiki/Harvest_now,_decrypt_later), and considering all the [connections](#three-connections-in-the-life-of-a-request) that take place when your website or application is on Cloudflare, we have deployed and are actively expanding the use of post-quantum hybrid key agreement.
+To protect you against the risk of [store now, decrypt later](https://en.wikipedia.org/wiki/Harvest_now,_decrypt_later), and considering all the [connections](#three-connections-in-the-life-of-a-request) that take place when your website or application is on Cloudflare, we have deployed and are actively expanding the use of [post-quantum hybrid key agreement](#hybrid-key-agreement).
 
 :::caution[TLS 1.3]
-Post-quantum key agreements are only supported in protocols based on TLS 1.3 (including HTTP/3) and are disabled for websites in [FIPS mode](/cloudflare-one/policies/gateway/http-policies/tls-decryption/#fips-compliance).
+Cloudflare post-quantum key agreements are only supported in protocols based on TLS 1.3 (including HTTP/3) and are disabled for websites in [FIPS mode](/cloudflare-one/policies/gateway/http-policies/tls-decryption/#fips-compliance).
 :::
 
 ## Three building blocks of TLS
@@ -41,7 +41,7 @@ Cloudflare has deployed the following hybrid key agreements:
 - [X25519Kyber768Draft00](https://datatracker.ietf.org/doc/draft-tls-westerbaan-xyber768d00/) (Obsolete)
     - TLS identifier: `0x6399`
 
-A hybrid key agreement lays the groundwork as more and more [clients](#visitor-to-cloudflare) adopt post-quantum cryptography, while also maintaining the current security provided by X25519. It is a safer path in case of an unexpected breakthrough that renders all variants of ML-KEM insecure.
+A hybrid key agreement lays the groundwork as more and more [clients](#1-visitor-to-cloudflare) adopt post-quantum cryptography, while also maintaining the current security provided by X25519. It is a safer path in case of an unexpected breakthrough that renders all variants of ML-KEM insecure.
 
 ## Three connections in the life of a request
 
@@ -73,3 +73,6 @@ As announced in [September 2023](https://blog.cloudflare.com/post-quantum-crypto
 
 ### 3. Cloudflare to your origin
 
+Finally, Cloudflare also supports [hybrid key agreements](#hybrid-key-agreement) when connecting to origins. In this case, post-quantum secured connections will depend on the origin servers also supporting PQC.
+
+Refer to [Post-quantum cryptography between Cloudflare and origin servers](/ssl/post-quantum-cryptography/pqc-to-origin/) for details.
