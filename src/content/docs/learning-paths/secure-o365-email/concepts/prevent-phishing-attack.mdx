@@ -19,19 +19,23 @@ To detect these low volume, malicious emails that do not contain malware, malici
 
 When malicious payloads or URLs are included or attached to an email, additional steps are taken to protect your users. For example:
 
-- **Attack type**:  Malicious payload attached to the message.
+### Malicious payload attached to the message
+
 - **Example**: Classic campaign technique which utilizes a variety of active attachment types (EXE, DOC, XLS, PPT, OLE, PDF, and more) as the malicious payload for ransomware attacks, Trojans, viruses, and malware.
 - **Detections applied**: Machine learning (ML) models on binary bitmaps of the payload as well as higher-level attributes of the payload, with specific focus on signatureless detections for maximum coverage. Additionally, for relevant active payloads, the engine invokes a real-time sandbox to assess behavior and determine maliciousness.
 
-- **Attack type**: Encrypted malicious payload attached to the message, with password in message body as text.
+### Encrypted malicious payload attached to the message, with password in message body as text
+
 - **Example**: Campaigns that induce the user to apply a password within the message body to the attachment.
 - **Detections applied**: Real-time lexical parsing of message body for password extraction and ML models on binary bitmaps of the payload, signatureless detections for maximum coverage.
 
-- **Attack type**: Malicious URLs within message body.
+### Malicious URLs within message body
+
 - **Example**: Typical phish campaigns with a socially engineered call to action URL that will implant malware (for example, watering hole attacks, malvertising, or scripting attacks).
 - **Detections applied**: Continuous web crawling, followed by real-time link crawling for a select group of suspicious urls, followed by machine learning applied to URL patterns in combination with other pattern rules and topic-based machine learning models for exhaustive coverage of link-based attacks.
 
-- **Attack type**: Malicious payload linked through a Malicious payload linked through a URL in a messageURL in a message.
+### Malicious payload linked through a malicious payload linked through a URL
+
 - **Example**: Campaigns where the URL links through to a remote malicious attachment (for example, in a .doc or .pdf file).
 - **Detections applied**: Remote document and/or attachment extraction followed by ML detection tree on the payload, instant crawl of links.
 
