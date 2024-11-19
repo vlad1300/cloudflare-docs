@@ -20,4 +20,42 @@ To reduce the risk of any issues when connecting to servers that are not ready f
 
 If the origin supports ML-KEM, it can use HelloRetryRequest to request it from Cloudflare.
 
+## Set up
+
+### Cloudflare zone settings
+
+The method described above is the one used to allow Cloudflare to support post-quantum to all outbound connections. However, if your origin server supports PQC and prefers it, you can use the [API](/api/operations/zone-cache-settings-change-origin-post-quantum-encryption-setting) to adjust it and avoid the extra round trip.
+
+It is also possible to opt out of PQC using the same API endpoint.
+
+:::note
+This setting affects all outbound connections from the zone you specify in the API call, including `fetch()` requests made by [workers](/workers/) on your zone.
+:::
+
+```bash
+curl --request PUT \
+"https://api.cloudflare.com/client/v4/zones/{zone_id}/cache/origin_post_quantum_encryption" \
+--header "Authorization: Bearer <API_TOKEN>" \
+--header "Content-Type: application/json" \
+--data '{
+  "value": "<YOUR_CHOSEN_SETTING>"
+}'
+```
+
+The possible values are:
+- `supported` (most compatible): Advertise support for post-quantum key agreement, but send a classical keyshare in the first ClientHello.
+- `preferred` (most performant): Send a post-quantum keyshare in the first ClientHello. Cloudflare continues to advertise support for classical keyshares as well.
+- `off`: Do not send nor advertise support for post-quantum key agreement to the origin.
+
+### Origin server
+
+If you set your Cloudflare zone to `supported`, you can make sure that your origin server will prefer the post-quantum key agreement by using Cloudflare's [fork of BoringSSL](https://github.com/cloudflare/boringssl-pq).
+
+If you set your Cloudflare zone to `preferred`, you can use the `bssl` tool of BoringSSL to check that your origin supports the correct [key agreement](/ssl/post-quantum-cryptography/#hybrid-key-agreement).
+
+```txt
+$ bssl client -connect (your server):443 -curves X25519MLKEM768
+```
+
+
 [^1]: When, to remove a round trip, a client makes a guess of what the server supports.
