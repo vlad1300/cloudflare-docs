@@ -3,7 +3,7 @@ productName: AI Gateway
 entries:
   - term: cf-aig-event-id
     general_definition: |-
-      Unique identifier for an AI Gateway event, used to trace specific events through the system.
+      Unique identifier for an event, used to trace specific events through the system.
 
   - term: cf-aig-step
     general_definition: |-
@@ -11,41 +11,41 @@ entries:
 
   - term: cf-aig-log-id
     general_definition: |-
-      Identifier for logging specific to the AI Gateway, enabling detailed tracking of requests.
+      Identifier for logging, enabling detailed tracking of requests.
 
   - term: cf-aig-collect-log
     general_definition: |-
-      Specifies if logging data should be collected for a particular request in the AI Gateway.
+      Specifies if logging data should be collected for a particular request.
 
   - term: cf-aig-custom-cost
     general_definition: |-
-      Allows the customization of request cost within AI Gateway to reflect user-defined parameters.
+      Allows the customization of request cost to reflect user-defined parameters.
 
   - term: cf-aig-cache-key
     general_definition: |-
-      Custom key to determine cache storage and retrieval in the AI Gateway.
+      Custom key to determine cache storage and retrieval.
 
   - term: cf-aig-cache-status
     general_definition: |-
-      Status indicator for AI Gateway caching, showing if a request was served from cache.
+      Status indicator for caching, showing if a request was served from cache.
 
   - term: cf-aig-metadata
     general_definition: |-
-      Additional metadata associated with a request in the AI Gateway.
+      Additional metadata associated with a request.
 
   - term: cf-aig-cache-ttl
     general_definition: |-
-      Specifies the cache time-to-live for AI Gateway responses.
+      Specifies the cache time-to-live for responses.
 
   - term: cf-aig-skip-cache
     general_definition: |-
-      Header to bypass caching for a specific request in the AI Gateway.
+      Header to bypass caching for a specific request.
 
   # Deprecated headers
   - term: cf-cache-ttl
     general_definition: |-
-      Deprecated: This header is replaced by `cf-aig-cache-ttl` in AI Gateway. It specifies cache time-to-live.
+      Deprecated: This header is replaced by `cf-aig-cache-ttl`. It specifies cache time-to-live.
 
   - term: cf-skip-cache
     general_definition: |-
-      Deprecated: This header is replaced by `cf-aig-skip-cache` in AI Gateway. It bypasses caching for a specific request.
+      Deprecated: This header is replaced by `cf-aig-skip-cache`. It bypasses caching for a specific request.
