@@ -44,8 +44,6 @@ Wrangler offers a number of commands to manage your Cloudflare Workers.
 
 :::note
 
-The following global flags work on every command, with some exceptions for `pages` commands.
-
 <Render file="wrangler-commands/global-flags" product="workers" />
 
 :::
@@ -130,8 +128,6 @@ wrangler docs [<COMMAND>]
 - `COMMAND` <Type text="string" /> <MetaInfo text="optional" />
   - The Wrangler command you want to learn more about. This opens your default browser to the section of the documentation that describes the command.
 
-The wrangler global flags can also be used:
-
 <Render file="wrangler-commands/global-flags" product="workers" />
 
 ## `init`
@@ -156,8 +152,6 @@ wrangler init [<NAME>] [OPTIONS]
   - Fetch a Worker initialized from the dashboard. This is done by passing the flag and the Worker name. `wrangler init --from-dash <WORKER_NAME>`.
   - The `--from-dash` command will not automatically sync changes made to the dashboard after the command is used. Therefore, it is recommended that you continue using the CLI.
 
-The wrangler global flags can also be used:
-
 <Render file="wrangler-commands/global-flags" product="workers" />
 
 ---
@@ -181,8 +175,6 @@ wrangler generate [<NAME>] [TEMPLATE]
 - `TEMPLATE` <Type text="string" /> <MetaInfo text="optional" />
   - The URL of a GitHub template, with a default [worker-template](https://github.com/cloudflare/worker-template). Browse a list of available templates on the [cloudflare/workers-sdk](https://github.com/cloudflare/workers-sdk/tree/main/templates#usage) repository.
 
-The wrangler global flags can also be used:
-
 <Render file="wrangler-commands/global-flags" product="workers" />
 
 ---
@@ -205,8 +197,6 @@ wrangler d1 create <DATABASE_NAME> [OPTIONS]
   - Provide an optional [location hint](/d1/configuration/data-location/) for your database leader.
   - Available options include `weur` (Western Europe), `eeur` (Eastern Europe), `apac` (Asia Pacific), `oc` (Oceania), `wnam` (Western North America), and `enam` (Eastern North America).
 
-The wrangler global flags can also be used:
-
 <Render file="wrangler-commands/global-flags" product="workers" />
 
 ### `info`
@@ -222,8 +212,6 @@ wrangler d1 info <DATABASE_NAME> [OPTIONS]
 - `--json` <Type text="boolean" /> <MetaInfo text="optional" />
   - Return output as JSON rather than a table.
 
-The wrangler global flags can also be used:
-
 <Render file="wrangler-commands/global-flags" product="workers" />
 
 ### `list`
@@ -236,8 +224,6 @@ wrangler d1 list [OPTIONS]
 
 - `--json` <Type text="boolean" /> <MetaInfo text="optional" />
   - Return output as JSON rather than a table.
-
-The wrangler global flags can also be used:
 
 <Render file="wrangler-commands/global-flags" product="workers" />
 
@@ -253,8 +239,6 @@ wrangler d1 delete <DATABASE_NAME> [OPTIONS]
   - The name of the D1 database to delete.
 - `-y, --skip-confirmation` <Type text="boolean" /> <MetaInfo text="optional" />
   - Skip deletion confirmation prompt.
-
-The wrangler global flags can also be used:
 
 <Render file="wrangler-commands/global-flags" product="workers" />
 
@@ -293,8 +277,6 @@ You must provide either `--command` or `--file` for this command to run successf
 - `--batch-size` <Type text="number" /> <MetaInfo text="optional" />
   - Number of queries to send in a single batch.
 
-The wrangler global flags can also be used:
-
 <Render file="wrangler-commands/global-flags" product="workers" />
 
 ### `export`
@@ -318,8 +300,6 @@ wrangler d1 export <DATABASE_NAME> [OPTIONS]
 - `--no-schema` <Type text="boolean" /> <MetaInfo text="(default: false) optional" />
   - Controls whether export SQL file contains database schema. Note that `--no-schema=true` is not recommended due to a known wrangler limitation that intreprets the value as false.
 
-The wrangler global flags can also be used:
-
 <Render file="wrangler-commands/global-flags" product="workers" />
 
 ### `time-travel restore`
@@ -339,8 +319,6 @@ wrangler d1 time-travel restore <DATABASE_NAME> [OPTIONS]
 - `--json` <Type text="boolean" /> <MetaInfo text="optional" />
   - Return output as JSON rather than a table.
 
-The wrangler global flags can also be used:
-
 <Render file="wrangler-commands/global-flags" product="workers" />
 
 ### `time-travel info`
@@ -357,8 +335,6 @@ wrangler d1 time-travel info <DATABASE_NAME> [OPTIONS]
   - A UNIX timestamp or JavaScript date-time `string` within the last 30 days.
 - `--json` b<Type text="boolean" /> <MetaInfo text="optional" />
   - Return output as JSON rather than a table.
-
-The wrangler global flags can also be used:
 
 <Render file="wrangler-commands/global-flags" product="workers" />
 
@@ -380,8 +356,6 @@ wrangler d1 backup create <DATABASE_NAME>
 - `DATABASE_NAME` <Type text="string" /> <MetaInfo text="required" />
   - The name of the D1 database to backup.
 
-The wrangler global flags can also be used:
-
 <Render file="wrangler-commands/global-flags" product="workers" />
 
 ### `backup list`
@@ -401,8 +375,6 @@ wrangler d1 backup list <DATABASE_NAME>
 
 - `DATABASE_NAME` <Type text="string" /> <MetaInfo text="required" />
   - The name of the D1 database to list the backups of.
-
-The wrangler global flags can also be used:
 
 <Render file="wrangler-commands/global-flags" product="workers" />
 
@@ -425,8 +397,6 @@ wrangler d1 backup restore <DATABASE_NAME> <BACKUP_ID>
   - The name of the D1 database to restore the backup into.
 - `BACKUP_ID` <Type text="string" /> <MetaInfo text="required" />
   - The ID of the backup you wish to restore.
-
-The wrangler global flags can also be used:
 
 <Render file="wrangler-commands/global-flags" product="workers" />
 
@@ -452,8 +422,6 @@ wrangler d1 backup download <DATABASE_NAME> <BACKUP_ID>
 - `--output` <Type text="string" /> <MetaInfo text="optional" />
   - The `.sqlite3` file to write to (defaults to `'<DB_NAME>.<SHORT_BACKUP_ID>.sqlite3'`).
 
-The wrangler global flags can also be used:
-
 <Render file="wrangler-commands/global-flags" product="workers" />
 
 ### `migrations create`
@@ -475,8 +443,6 @@ wrangler d1 migrations create <DATABASE_NAME> <MIGRATION_NAME>
 - `MIGRATION_NAME` <Type text="string" /> <MetaInfo text="required" />
   - A descriptive name for the migration you wish to create.
 
-The wrangler global flags can also be used:
-
 <Render file="wrangler-commands/global-flags" product="workers" />
 
 ### `migrations list`
@@ -497,8 +463,6 @@ wrangler d1 migrations list <DATABASE_NAME> [OPTIONS]
   - Specify directory to use for local persistence (for use in combination with `--local`).
 - `--preview` <Type text="boolean" /> <MetaInfo text="optional" />
   - Show the list of unapplied migration files on your preview D1 database (as defined by `preview_database_id` in [`wrangler.toml`](/workers/wrangler/configuration/#d1-databases)).
-
-The wrangler global flags can also be used:
 
 <Render file="wrangler-commands/global-flags" product="workers" />
 
@@ -532,8 +496,6 @@ wrangler d1 migrations apply <DATABASE_NAME> [OPTIONS]
   - Execute any unapplied migrations on your preview D1 database (as defined by `preview_database_id` in [`wrangler.toml`](/workers/wrangler/configuration/#d1-databases)).
 - `--batch-size` <Type text="number" /> <MetaInfo text="optional" />
   - Number of queries to send in a single batch.
-
-The wrangler global flags can also be used:
 
 <Render file="wrangler-commands/global-flags" product="workers" />
 
@@ -570,8 +532,6 @@ npx wrangler vectorize create <INDEX_NAME> [--dimensions=<NUM_DIMENSIONS>] [--me
 - `--deprecated-v1` <Type text="boolean" /> <MetaInfo text="optional" />
   - Create a legacy Vectorize index. Please note that legacy Vectorize indexes are on a [deprecation path](/vectorize/reference/transition-vectorize-legacy).
 
-The wrangler global flags can also be used:
-
 <Render file="wrangler-commands/global-flags" product="workers" />
 
 ### `list`
@@ -584,8 +544,6 @@ npx wrangler vectorize list
 
 - `--deprecated-v1` <Type text="boolean" /> <MetaInfo text="optional" />
   - List legacy Vectorize indexes. Please note that legacy Vectorize indexes are on a [deprecation path](/vectorize/reference/transition-vectorize-legacy).
-
-The wrangler global flags can also be used:
 
 <Render file="wrangler-commands/global-flags" product="workers" />
 
@@ -602,8 +560,6 @@ npx wrangler vectorize get <INDEX_NAME>
 - `--deprecated-v1` <Type text="boolean" /> <MetaInfo text="optional" />
   - Get a legacy Vectorize index. Please note that legacy Vectorize indexes are on a [deprecation path](/vectorize/reference/transition-vectorize-legacy).
 
-The wrangler global flags can also be used:
-
 <Render file="wrangler-commands/global-flags" product="workers" />
 
 ### `info`
@@ -616,8 +572,6 @@ npx wrangler vectorize info <INDEX_NAME>
 
 - `INDEX_NAME` <Type text="string" /> <MetaInfo text="required" />
   - The name of the index to fetch details for.
-
-The wrangler global flags can also be used:
 
 <Render file="wrangler-commands/global-flags" product="workers" />
 
@@ -635,8 +589,6 @@ npx wrangler vectorize delete <INDEX_NAME> [OPTIONS]
   - Skip confirmation when deleting the index (Note: This is not a recoverable operation).
 - `--deprecated-v1` <Type text="boolean" /> <MetaInfo text="optional" />
   - Delete a legacy Vectorize index. Please note that legacy Vectorize indexes are on a [deprecation path](/vectorize/reference/transition-vectorize-legacy).
-
-The wrangler global flags can also be used:
 
 <Render file="wrangler-commands/global-flags" product="workers" />
 
@@ -657,8 +609,6 @@ npx wrangler vectorize insert <INDEX_NAME> [OPTIONS]
 - `--deprecated-v1` <Type text="boolean" /> <MetaInfo text="optional" />
   - Insert into a legacy Vectorize index. Please note that legacy Vectorize indexes are on a [deprecation path](/vectorize/reference/transition-vectorize-legacy).
 
-The wrangler global flags can also be used:
-
 <Render file="wrangler-commands/global-flags" product="workers" />
 
 ### `upsert`
@@ -675,8 +625,6 @@ npx wrangler vectorize upsert <INDEX_NAME> [OPTIONS]
   - A file containing the vectors to insert in newline-delimited JSON (JSON) format.
 - `--batch-size` <Type text="number" /> <MetaInfo text="optional" />
   - The number of vectors to insert at a time (default: `5000`).
-
-The wrangler global flags can also be used:
 
 <Render file="wrangler-commands/global-flags" product="workers" />
 
@@ -705,8 +653,6 @@ npx wrangler vectorize query <INDEX_NAME> [OPTIONS]
 - `--filter` <Type text="string" /> <MetaInfo text="optional" />
   - Filter vectors based on this metadata filter. Example: `'{ 'p1': 'abc', 'p2': { '$ne': true }, 'p3': 10, 'p4': false, 'nested.p5': 'abcd' }'`
 
-The wrangler global flags can also be used:
-
 <Render file="wrangler-commands/global-flags" product="workers" />
 
 ### `get-vectors`
@@ -722,8 +668,6 @@ npx wrangler vectorize get-vectors <INDEX_NAME> [OPTIONS]
 - `--ids` <Type text="array" /> <MetaInfo text="required" />
   - List of ids for which vectors must be fetched.
 
-The wrangler global flags can also be used:
-
 <Render file="wrangler-commands/global-flags" product="workers" />
 
 ### `delete-vectors`
@@ -738,8 +682,6 @@ npx wrangler vectorize delete-vectors <INDEX_NAME> [OPTIONS]
   - The name of the Vectorize index from which vectors need to be deleted.
 - `--ids` <Type text="array" /> <MetaInfo text="required" />
   - List of ids corresponding to the vectors that must be deleted.
-
-The wrangler global flags can also be used:
 
 <Render file="wrangler-commands/global-flags" product="workers" />
 
@@ -758,8 +700,6 @@ npx wrangler vectorize create-metadata-index <INDEX_NAME> [OPTIONS]
 - `--type` <Type text="string" /> <MetaInfo text="required" />
   - Data type of the property. Must be one of `string`, `number`, or `boolean`.
 
-The wrangler global flags can also be used:
-
 <Render file="wrangler-commands/global-flags" product="workers" />
 
 ### `list-metadata-index`
@@ -772,8 +712,6 @@ npx wrangler vectorize list-metadata-index <INDEX_NAME> [OPTIONS]
 
 - `INDEX_NAME` <Type text="string" /> <MetaInfo text="required" />
   - The name of the Vectorize index for which metadata indexes needs to be fetched.
-
-The wrangler global flags can also be used:
 
 <Render file="wrangler-commands/global-flags" product="workers" />
 
@@ -789,8 +727,6 @@ npx wrangler vectorize delete-metadata-index <INDEX_NAME> [OPTIONS]
   - The name of the Vectorize index for which metadata index needs to be disabled.
 - `--property-name` <Type text="string" /> <MetaInfo text="required" />
   - Metadata property for which metadata filtering should be disabled.
-
-The wrangler global flags can also be used:
 
 <Render file="wrangler-commands/global-flags" product="workers" />
 
@@ -891,8 +827,6 @@ As of Wrangler v3.2.0, `wrangler dev` is supported by any Linux distributions pr
 - `--alias` `Array<string>`
   - Specify modules to alias using [module aliasing](/workers/wrangler/configuration/#module-aliasing).
 
-The wrangler global flags can also be used:
-
 <Render file="wrangler-commands/global-flags" product="workers" />
 
 `wrangler dev` is a way to [locally test](/workers/testing/local-development/) your Worker while developing. With `wrangler dev` running, send HTTP requests to `localhost:8787` and your Worker should execute as expected. You will also see `console.log` messages and exceptions appearing in your terminal.
@@ -969,8 +903,6 @@ None of the options for this command are required. Also, many can be set in your
 - `--dispatch-namespace` <Type text="string" /> <MetaInfo text="optional" />
   - Specify the [Workers for Platforms dispatch namespace](/cloudflare-for-platforms/workers-for-platforms/get-started/configuration/#2-create-a-dispatch-namespace) to upload this Worker to.
 
-The wrangler global flags can also be used:
-
 <Render file="wrangler-commands/global-flags" product="workers" />
 
 ---
@@ -1008,8 +940,6 @@ wrangler delete [<SCRIPT>] [OPTIONS]
 - `--dry-run` <Type text="boolean" /> <MetaInfo text="(default: false) optional" />
   - Do not actually delete the Worker. This is useful for testing the output of `wrangler delete`.
 
-The wrangler global flags can also be used:
-
 <Render file="wrangler-commands/global-flags" product="workers" />
 
 <Render file="wrangler-commands/kv" product="workers" />
@@ -1042,8 +972,6 @@ wrangler r2 bucket create <NAME>
 - `--jurisdiction` <Type text="string" /> <MetaInfo text="optional" />
   - The jurisdiction where the R2 bucket is created. Refer to [jurisdictional restrictions](/r2/reference/data-location/#jurisdictional-restrictions).
 
-The wrangler global flags can also be used:
-
 <Render file="wrangler-commands/global-flags" product="workers" />
 
 ### `info`
@@ -1059,8 +987,6 @@ wrangler r2 bucket info <NAME>
 - `--jurisdiction` <Type text="string" /> <MetaInfo text="optional" />
   - The jurisdiction where the bucket exists, if a jurisdiction has been specified. Refer to [jurisdictional restrictions](/r2/reference/data-location/#jurisdictional-restrictions).
 
-The wrangler global flags can also be used:
-
 <Render file="wrangler-commands/global-flags" product="workers" />
 
 ### `delete`
@@ -1073,8 +999,6 @@ wrangler r2 bucket delete <NAME>
 
 - `NAME` <Type text="string" /> <MetaInfo text="required" />
   - The name of the R2 bucket to delete.
-
-The wrangler global flags can also be used:
 
 <Render file="wrangler-commands/global-flags" product="workers" />
 
@@ -1101,8 +1025,6 @@ wrangler r2 bucket dev-url enable <NAME> [OPTIONS]
 - `--force` <Type text="boolean" /> <MetaInfo text="optional" />
   - Skip confirmation when enabling public access via r2.dev URL.
 
-The wrangler global flags can also be used:
-
 <Render file="wrangler-commands/global-flags" product="workers" />
 
 ### `dev-url disable`
@@ -1120,8 +1042,6 @@ wrangler r2 bucket dev-url disable <NAME> [OPTIONS]
 - `--force` <Type text="boolean" /> <MetaInfo text="optional" />
   - Skip confirmation when disabling public access via r2.dev URL.
 
-The wrangler global flags can also be used:
-
 <Render file="wrangler-commands/global-flags" product="workers" />
 
 ### `dev-url get`
@@ -1136,8 +1056,6 @@ wrangler r2 bucket dev-url get <NAME> [OPTIONS]
   - The name of the R2 bucket whose r2.dev URL status to retrieve.
 - `--jurisdiction` <Type text="string" /> <MetaInfo text="optional" />
   - The jurisdiction where the bucket exists, if a jurisdiction has been specified. Refer to [jurisdictional restrictions](/r2/reference/data-location/#jurisdictional-restrictions).
-
-The wrangler global flags can also be used:
 
 <Render file="wrangler-commands/global-flags" product="workers" />
 
@@ -1162,8 +1080,6 @@ wrangler r2 bucket domain add <NAME> [OPTIONS]
 - `--force` <Type text="boolean" /> <MetaInfo text="optional" />
   - Skip confirmation when adding the custom domain.
 
-The wrangler global flags can also be used:
-
 <Render file="wrangler-commands/global-flags" product="workers" />
 
 ### `domain remove`
@@ -1182,8 +1098,6 @@ wrangler r2 bucket domain remove <NAME> [OPTIONS]
   - The jurisdiction where the bucket exists, if a jurisdiction has been specified. Refer to [jurisdictional restrictions](/r2/reference/data-location/#jurisdictional-restrictions).
 - `--force` <Type text="boolean" /> <MetaInfo text="optional" />
   - Skip confirmation when removing the custom domain.
-
-The wrangler global flags can also be used:
 
 <Render file="wrangler-commands/global-flags" product="workers" />
 
@@ -1204,8 +1118,6 @@ wrangler r2 bucket domain update <NAME> [OPTIONS]
 - `--jurisdiction` <Type text="string" /> <MetaInfo text="optional" />
   - The jurisdiction where the bucket exists, if a jurisdiction has been specified. Refer to [jurisdictional restrictions](/r2/reference/data-location/#jurisdictional-restrictions).
 
-The wrangler global flags can also be used:
-
 <Render file="wrangler-commands/global-flags" product="workers" />
 
 ### `domain list`
@@ -1220,8 +1132,6 @@ wrangler r2 bucket domain list <NAME> [OPTIONS]
   - The name of the R2 bucket whose connected custom domains will be listed.
 - `--jurisdiction` <Type text="string" /> <MetaInfo text="optional" />
   - The jurisdiction where the bucket exists, if a jurisdiction has been specified. Refer to [jurisdictional restrictions](/r2/reference/data-location/#jurisdictional-restrictions).
-
-The wrangler global flags can also be used:
 
 <Render file="wrangler-commands/global-flags" product="workers" />
 
@@ -1246,8 +1156,6 @@ wrangler r2 bucket notification create <NAME> [OPTIONS]
 - `--description` <Type text="string" /> <MetaInfo text="optional" />
   - A description that can be used to identify the event notification rule after creation.
 
-The wrangler global flags can also be used:
-
 <Render file="wrangler-commands/global-flags" product="workers" />
 
 ### `notification delete`
@@ -1265,8 +1173,6 @@ wrangler r2 bucket notification delete <NAME> [OPTIONS]
 - `--rule` <Type text="string" /> <MetaInfo text="optional" />
   - The ID of the event notification rule to delete.
 
-The wrangler global flags can also be used:
-
 <Render file="wrangler-commands/global-flags" product="workers" />
 
 ### `notification list`
@@ -1279,8 +1185,6 @@ wrangler r2 bucket notification list <NAME>
 
 - `NAME` <Type text="string" /> <MetaInfo text="required" />
   - The name of the R2 bucket to get event notification rules for.
-
-The wrangler global flags can also be used:
 
 <Render file="wrangler-commands/global-flags" product="workers" />
 
@@ -1320,8 +1224,6 @@ wrangler r2 bucket sippy enable <NAME> [OPTIONS]
   - The private key for your Google Cloud service account key. Requires [read and list access](/r2/data-migration/sippy/#google-cloud-storage).
 - Note that you must provide either `service-account-key-file` or `client_email` and `private_key` for this command to run successfully.
 
-The wrangler global flags can also be used:
-
 <Render file="wrangler-commands/global-flags" product="workers" />
 
 ### `sippy disable`
@@ -1334,8 +1236,6 @@ wrangler r2 bucket sippy disable <NAME>
 
 - `NAME` <Type text="string" /> <MetaInfo text="required" />
   - The name of the R2 bucket to disable Sippy.
-
-The wrangler global flags can also be used:
 
 <Render file="wrangler-commands/global-flags" product="workers" />
 
@@ -1350,8 +1250,6 @@ wrangler r2 bucket sippy get <NAME>
 - `NAME` <Type text="string" /> <MetaInfo text="required" />
   - The name of the R2 bucket to get the status of Sippy.
 
-The wrangler global flags can also be used:
-
 <Render file="wrangler-commands/global-flags" product="workers" />
 
 ---
@@ -1359,8 +1257,6 @@ The wrangler global flags can also be used:
 ## `r2 object`
 
 Interact with R2 objects.
-
-The wrangler global flags can also be used:
 
 <Render file="wrangler-commands/global-flags" product="workers" />
 
@@ -1383,8 +1279,6 @@ wrangler r2 object get <OBJECT_PATH> [OPTIONS]
   - Interact with locally persisted data.
 - `--persist-to` <Type text="string" /> <MetaInfo text="optional" />
   - Specify directory for locally persisted data.
-
-The wrangler global flags can also be used:
 
 <Render file="wrangler-commands/global-flags" product="workers" />
 
@@ -1419,8 +1313,6 @@ wrangler r2 object put <OBJECT_PATH> [OPTIONS]
 - `--persist-to` <Type text="string" /> <MetaInfo text="optional" />
   - Specify directory for locally persisted data.
 
-The wrangler global flags can also be used:
-
 <Render file="wrangler-commands/global-flags" product="workers" />
 
 ### `delete`
@@ -1437,8 +1329,6 @@ wrangler r2 object delete <OBJECT_PATH> [OPTIONS]
   - Interact with locally persisted data.
 - `--persist-to` <Type text="string" /> <MetaInfo text="optional" />
   - Specify directory for locally persisted data.
-
-The wrangler global flags can also be used:
 
 <Render file="wrangler-commands/global-flags" product="workers" />
 
@@ -1464,8 +1354,6 @@ wrangler secret put <KEY> [OPTIONS]
   - Perform on a specific Worker rather than inheriting from `wrangler.toml`.
 - `--env` <Type text="string" /> <MetaInfo text="optional" />
   - Perform on a specific environment.
-
-The wrangler global flags can also be used:
 
 <Render file="wrangler-commands/global-flags" product="workers" />
 
@@ -1502,8 +1390,6 @@ wrangler secret delete <KEY> [OPTIONS]
 - `--env` <Type text="string" /> <MetaInfo text="optional" />
   - Perform on a specific environment.
 
-The wrangler global flags can also be used:
-
 <Render file="wrangler-commands/global-flags" product="workers" />
 
 ### `list`
@@ -1518,8 +1404,6 @@ wrangler secret list [OPTIONS]
   - Perform on a specific Worker rather than inheriting from `wrangler.toml`.
 - `--env` <Type text="string" /> <MetaInfo text="optional" />
   - Perform on a specific environment
-
-The wrangler global flags can also be used:
 
 <Render file="wrangler-commands/global-flags" product="workers" />
 
@@ -1555,8 +1439,6 @@ wrangler secret:bulk [<FILENAME>] [OPTIONS]
   - Perform on a specific Worker rather than inheriting from `wrangler.toml`.
 - `--env` <Type text="string" /> <MetaInfo text="optional" />
   - Perform on a specific environment.
-
-The wrangler global flags can also be used:
 
 <Render file="wrangler-commands/global-flags" product="workers" />
 
@@ -1608,8 +1490,6 @@ wrangler workflows list
 - `--per-page` <Type text="number" /> <MetaInfo text="optional" />
   - Configure the maximum number of Workflows to show per page.
 
-The wrangler global flags can also be used:
-
 <Render file="wrangler-commands/global-flags" product="workers" />
 
 ### `instances`
@@ -1627,8 +1507,6 @@ wrangler workflows instances list <WORKFLOW_NAME> [OPTIONS]
 - `WORKFLOW_NAME` <Type text="string" /> <MetaInfo text="required" />
   - The name of a registered Workflow.
 
-The wrangler global flags can also be used:
-
 <Render file="wrangler-commands/global-flags" product="workers" />
 
 ### `instances describe`
@@ -1643,8 +1521,6 @@ wrangler workflows instances describe <WORKFLOW_NAME> <ID> [OPTIONS]
   - The name of a registered Workflow.
 - `ID` <Type text="string" /> <MetaInfo text="required" />
   - The ID of a Workflow instance. You can optionally provide `latest` to refer to the most recently created instance of a Workflow.
-
-The wrangler global flags can also be used:
 
 <Render file="wrangler-commands/global-flags" product="workers" />
 
@@ -1680,8 +1556,6 @@ wrangler workflows instances terminate <WORKFLOW_NAME> <ID> [OPTIONS]
 - `ID` <Type text="string" /> <MetaInfo text="required" />
   - The ID of a Workflow instance.
 
-The wrangler global flags can also be used:
-
 <Render file="wrangler-commands/global-flags" product="workers" />
 
 ### `instances pause`
@@ -1696,8 +1570,6 @@ wrangler workflows instances pause <WORKFLOW_NAME> <ID> [OPTIONS]
   - The name of a registered Workflow.
 - `ID` <Type text="string" /> <MetaInfo text="required" />
   - The ID of a Workflow instance.
-
-The wrangler global flags can also be used:
 
 <Render file="wrangler-commands/global-flags" product="workers" />
 
@@ -1714,8 +1586,6 @@ wrangler workflows instances resume <WORKFLOW_NAME> <ID> [OPTIONS]
 - `ID` <Type text="string" /> <MetaInfo text="required" />
   - The ID of a Workflow instance.
 
-The wrangler global flags can also be used:
-
 <Render file="wrangler-commands/global-flags" product="workers" />
 
 ### `describe`
@@ -1726,8 +1596,6 @@ wrangler workflows describe <WORKFLOW_NAME> [OPTIONS]
 
 - `WORKFLOW_NAME` <Type text="string" /> <MetaInfo text="required" />
   - The name of a registered Workflow.
-
-The wrangler global flags can also be used:
 
 <Render file="wrangler-commands/global-flags" product="workers" />
 
@@ -1743,8 +1611,6 @@ wrangler workflows trigger <WORKFLOW_NAME> <PARAMS> [OPTIONS]
   - The name of a registered Workflow.
 - `PARAMS` <Type text="string" /> <MetaInfo text="optional" />
   - The parameters to pass to the Workflow as an event. Must be a JSON-encoded string.
-
-The wrangler global flags can also be used:
 
 <Render file="wrangler-commands/global-flags" product="workers" />
 
@@ -1794,8 +1660,6 @@ wrangler tail <WORKER> [OPTIONS]
   - Filter by the IP address the request originates from. Use `"self"` to show only messages from your own IP.
 - `--version-id` <Type text="string" /> <MetaInfo text="optional" />
   - Filter by Worker version.
-
-The wrangler global flags can also be used:
 
 <Render file="wrangler-commands/global-flags" product="workers" />
 
@@ -1855,8 +1719,6 @@ wrangler pages dev [<DIRECTORY>] [OPTIONS]
 - `--https-cert-path` <Type text="string" /> <MetaInfo text="optional" />
   - Path to a custom certificate.
 
-The wrangler global flags can also be used:
-
 <Render file="wrangler-commands/global-flags" product="workers" />
 
 ### `download config`
@@ -1867,8 +1729,6 @@ Download your Pages project config as a wrangler.toml file.
 wrangler pages download config <PROJECT_NAME>
 ```
 
-The wrangler global flags can also be used:
-
 <Render file="wrangler-commands/global-flags" product="workers" />
 
 ### `project list`
@@ -1878,8 +1738,6 @@ List your Pages projects.
 ```txt
 wrangler pages project list
 ```
-
-The wrangler global flags can also be used:
 
 <Render file="wrangler-commands/global-flags" product="workers" />
 
@@ -1896,8 +1754,6 @@ wrangler pages project create <PROJECT_NAME> [OPTIONS]
 - `--production-branch` <Type text="string" /> <MetaInfo text="optional" />
   - The name of the production branch of your project.
 
-The wrangler global flags can also be used:
-
 <Render file="wrangler-commands/global-flags" product="workers" />
 
 ### `project delete`
@@ -1913,8 +1769,6 @@ wrangler pages project delete <PROJECT_NAME> [OPTIONS]
 - `--yes` <Type text="boolean" /> <MetaInfo text="optional" />
   - Answer `"yes"` to confirmation prompt.
 
-The wrangler global flags can also be used:
-
 <Render file="wrangler-commands/global-flags" product="workers" />
 
 ### `deployment list`
@@ -1927,8 +1781,6 @@ wrangler pages deployment list [--project-name <PROJECT_NAME>]
 
 - `--project-name` <Type text="string" /> <MetaInfo text="optional" />
   - The name of the project you would like to list deployments for.
-
-The wrangler global flags can also be used:
 
 <Render file="wrangler-commands/global-flags" product="workers" />
 
@@ -1961,8 +1813,6 @@ wrangler pages deployment tail [<DEPLOYMENT>] [OPTIONS]
 - `--ip` <Type text="(string|'self')\[]" /> <MetaInfo text="optional" />
   - Filter by the IP address the request originates from. Use `"self"` to show only messages from your own IP.
 
-The wrangler global flags can also be used:
-
 <Render file="wrangler-commands/global-flags" product="workers" />
 
 :::note
@@ -1993,8 +1843,6 @@ wrangler pages deploy <BUILD_OUTPUT_DIRECTORY> [OPTIONS]
 - `--commit-dirty` <Type text="boolean" /> <MetaInfo text="optional" />
   - Whether or not the workspace should be considered dirty for this deployment.
 
-The wrangler global flags can also be used:
-
 <Render file="wrangler-commands/global-flags" product="workers" />
 
 :::note
@@ -2010,8 +1858,6 @@ Publish a directory of static assets as a Pages deployment.
 ```txt
 wrangler pages publish [<DIRECTORY>] [OPTIONS]
 ```
-
-The wrangler global flags can also be used:
 
 <Render file="wrangler-commands/global-flags" product="workers" />
 
@@ -2034,8 +1880,6 @@ wrangler pages secret put <KEY> [OPTIONS]
 - `--project-name` <Type text="string" /> <MetaInfo text="optional" />
   - The name of your Pages project.
 
-The wrangler global flags can also be used:
-
 <Render file="wrangler-commands/global-flags" product="workers" />
 
 ### `secret delete`
@@ -2051,8 +1895,6 @@ wrangler pages secret delete <KEY> [OPTIONS]
 - `--project-name` <Type text="string" /> <MetaInfo text="optional" />
   - The name of your Pages project.
 
-The wrangler global flags can also be used:
-
 <Render file="wrangler-commands/global-flags" product="workers" />
 
 ### `secret list`
@@ -2065,8 +1907,6 @@ wrangler pages secret list [OPTIONS]
 
 - `--project-name` <Type text="string" /> <MetaInfo text="optional" />
   - The name of your Pages project.
-
-The wrangler global flags can also be used:
 
 <Render file="wrangler-commands/global-flags" product="workers" />
 
@@ -2083,8 +1923,6 @@ wrangler pages secret bulk [<FILENAME>] [OPTIONS]
   - If omitted, Wrangler expects to receive input from `stdin` rather than a file.
 - `--project-name` <Type text="string" /> <MetaInfo text="optional" />
   - The name of your Pages project.
-
-The wrangler global flags can also be used:
 
 <Render file="wrangler-commands/global-flags" product="workers" />
 
@@ -2107,8 +1945,6 @@ wrangler queues create <name> [OPTIONS]
 - `--delivery-delay-secs` <Type text="number" /> <MetaInfo text="optional" />
   - How long a published message should be delayed for, in seconds. Must be a positive integer.
 
-The wrangler global flags can also be used:
-
 <Render file="wrangler-commands/global-flags" product="workers" />
 
 ### `delete`
@@ -2122,8 +1958,6 @@ wrangler queues delete <name> [OPTIONS]
 - `name` <Type text="string" /> <MetaInfo text="required" />
   - The name of the queue to delete.
 
-The wrangler global flags can also be used:
-
 <Render file="wrangler-commands/global-flags" product="workers" />
 
 ### `list`
@@ -2133,8 +1967,6 @@ List all queues in the current account.
 ```txt
 wrangler queues list [OPTIONS]
 ```
-
-The wrangler global flags can also be used:
 
 <Render file="wrangler-commands/global-flags" product="workers" />
 
@@ -2165,8 +1997,6 @@ wrangler queues consumer add <queue-name> <script-name> [OPTIONS]
 - `--retry-delay-secs` <Type text="number" /> <MetaInfo text="optional" />
   - How long a retried message should be delayed for, in seconds. Must be a positive integer.
 
-The wrangler global flags can also be used:
-
 <Render file="wrangler-commands/global-flags" product="workers" />
 
 ### `consumer remove`
@@ -2181,8 +2011,6 @@ wrangler queues consumer remove <queue-name> <script-name>
   - The name of the queue to remove the consumer from.
 - `script-name` <Type text="string" /> <MetaInfo text="required" />
   - The name of the Workers script to remove as the consumer.
-
-The wrangler global flags can also be used:
 
 <Render file="wrangler-commands/global-flags" product="workers" />
 
@@ -2203,8 +2031,6 @@ wrangler login [OPTIONS]
 - `--scopes $SCOPES` <Type text="string" /> <MetaInfo text="optional" />
   - Allows to choose your set of OAuth scopes. The set of scopes must be entered in a whitespace-separated list,
     for example, `npx wrangler login --scopes account:read user:read`.
-
-The wrangler global flags can also be used:
 
 <Render file="wrangler-commands/global-flags" product="workers" />
 
@@ -2250,8 +2076,6 @@ Remove Wrangler's authorization for accessing your account. This command will in
 wrangler logout
 ```
 
-The wrangler global flags can also be used:
-
 <Render file="wrangler-commands/global-flags" product="workers" />
 
 If you are using `CLOUDFLARE_API_TOKEN` instead of OAuth, and you can logout by deleting your API token in the Cloudflare dashboard:
@@ -2270,8 +2094,6 @@ Retrieve your user information and test your authentication configuration.
 ```txt
 wrangler whoami
 ```
-
-The wrangler global flags can also be used:
 
 <Render file="wrangler-commands/global-flags" product="workers" />
 
@@ -2298,8 +2120,6 @@ wrangler versions upload [OPTIONS]
 - `--name` <Type text="string" /> <MetaInfo text="optional" />
   - Perform on a specific Worker rather than inheriting from `wrangler.toml`.
 
-The wrangler global flags can also be used:
-
 <Render file="wrangler-commands/global-flags" product="workers" />
 
 ### `deploy`
@@ -2312,8 +2132,6 @@ wrangler versions deploy [OPTIONS]
 
 - `--name` <Type text="string" /> <MetaInfo text="optional" />
   - Perform on a specific Worker rather than inheriting from `wrangler.toml`.
-
-The wrangler global flags can also be used:
 
 <Render file="wrangler-commands/global-flags" product="workers" />
 
@@ -2337,8 +2155,6 @@ wrangler versions list [OPTIONS]
 - `--name` <Type text="string" /> <MetaInfo text="optional" />
   - Perform on a specific Worker rather than inheriting from `wrangler.toml`.
 
-The wrangler global flags can also be used:
-
 <Render file="wrangler-commands/global-flags" product="workers" />
 
 ### `secret put`
@@ -2355,8 +2171,6 @@ wrangler versions secret put <KEY> [OPTIONS]
   - Perform on a specific Worker rather than inheriting from `wrangler.toml`.
 - `--env` <Type text="string" /> <MetaInfo text="optional" />
   - Perform on a specific environment.
-
-The wrangler global flags can also be used:
 
 <Render file="wrangler-commands/global-flags" product="workers" />
 
@@ -2375,8 +2189,6 @@ wrangler versions delete <KEY> [OPTIONS]
 - `--env` <Type text="string" /> <MetaInfo text="optional" />
   - Perform on a specific environment.
 
-The wrangler global flags can also be used:
-
 <Render file="wrangler-commands/global-flags" product="workers" />
 
 ### `secret bulk`
@@ -2394,8 +2206,6 @@ wrangler versions secret bulk <FILENAME> [OPTIONS]
   - Perform on a specific Worker rather than inheriting from `wrangler.toml`.
 - `--env` <Type text="string" /> <MetaInfo text="optional" />
   - Perform on a specific environment.
-
-The wrangler global flags can also be used:
 
 <Render file="wrangler-commands/global-flags" product="workers" />
 
@@ -2417,8 +2227,6 @@ wrangler triggers deploy [OPTIONS]
 
 - `--name` <Type text="string" /> <MetaInfo text="optional" />
   - Perform on a specific Worker rather than inheriting from `wrangler.toml`.
-
-The wrangler global flags can also be used:
 
 <Render file="wrangler-commands/global-flags" product="workers" />
 
@@ -2443,8 +2251,6 @@ wrangler deployments list [OPTIONS]
 - `--name` <Type text="string" /> <MetaInfo text="optional" />
   - Perform on a specific Worker rather than inheriting from `wrangler.toml`.
 
-The wrangler global flags can also be used:
-
 <Render file="wrangler-commands/global-flags" product="workers" />
 
 ### `status`
@@ -2457,8 +2263,6 @@ wrangler deployments status
 
 - `--name` <Type text="string" /> <MetaInfo text="optional" />
   - Perform on a specific Worker rather than inheriting from `wrangler.toml`.
-
-The wrangler global flags can also be used:
 
 <Render file="wrangler-commands/global-flags" product="workers" />
 
@@ -2479,8 +2283,6 @@ wrangler rollback [<VERSION_ID>] [OPTIONS]
 - `--message` <Type text="string" /> <MetaInfo text="optional" />
   - Add message for rollback. Accepts empty string. When specified, interactive prompts for rollback confirmation and message are skipped.
 
-The wrangler global flags can also be used:
-
 <Render file="wrangler-commands/global-flags" product="workers" />
 
 ---
@@ -2495,8 +2297,6 @@ List all dispatch namespaces.
 wrangler dispatch-namespace list
 ```
 
-The wrangler global flags can also be used:
-
 <Render file="wrangler-commands/global-flags" product="workers" />
 
 ### `get`
@@ -2510,8 +2310,6 @@ wrangler dispatch-namespace get <NAME>
 - `NAME` <Type text="string" /> <MetaInfo text="required" />
   - The name of the dispatch namespace to get details about.
 
-The wrangler global flags can also be used:
-
 <Render file="wrangler-commands/global-flags" product="workers" />
 
 ### `create`
@@ -2524,8 +2322,6 @@ wrangler dispatch-namespace create <NAME>
 
 - `NAME` <Type text="string" /> <MetaInfo text="required" />
   - The name of the dispatch namespace to create.
-
-The wrangler global flags can also be used:
 
 <Render file="wrangler-commands/global-flags" product="workers" />
 
@@ -2545,8 +2341,6 @@ You must delete all user Workers in the dispatch namespace before it can be dele
 - `NAME` <Type text="string" /> <MetaInfo text="required" />
   - The name of the dispatch namespace to delete.
 
-The wrangler global flags can also be used:
-
 <Render file="wrangler-commands/global-flags" product="workers" />
 
 ### `rename`
@@ -2561,8 +2355,6 @@ wrangler dispatch-namespace get <OLD_NAME> <NEW_NAME>
   - The previous name of the dispatch namespace.
 - `NEW_NAME` <Type text="string" /> <MetaInfo text="required" />
   - The new name of the dispatch namespace.
-
-The wrangler global flags can also be used:
 
 <Render file="wrangler-commands/global-flags" product="workers" />
 
@@ -2588,8 +2380,6 @@ wrangler mtls-certificate upload --cert <PATH> --key <PATH> [OPTIONS]
   - A path to the private key to upload.
 - `--name` <Type text="string" /> <MetaInfo text="optional" />
   - The name assigned to the mTLS certificate at upload.
-
-The wrangler global flags can also be used:
 
 <Render file="wrangler-commands/global-flags" product="workers" />
 
@@ -2625,8 +2415,6 @@ List mTLS certificates associated with the current account ID.
 wrangler mtls-certificate list
 ```
 
-The wrangler global flags can also be used:
-
 <Render file="wrangler-commands/global-flags" product="workers" />
 
 The following is an example of using the `list` command to upload an mTLS certificate.
@@ -2660,8 +2448,6 @@ wrangler mtls-certificate delete {--id <ID|--name <NAME>}
   - The ID of the mTLS certificate.
 - `--name` <Type text="string" />
   - The name assigned to the mTLS certificate at upload.
-
-The wrangler global flags can also be used:
 
 <Render file="wrangler-commands/global-flags" product="workers" />
 
@@ -2713,7 +2499,5 @@ The minimum required Wrangler version to use this command is 3.66.0.
   - Leave the path blank to use the default option, e.g. `npx wrangler types --x-include-runtime`
   - A custom path must be relative to the project root, e.g. `./my-runtime-types.d.ts`
   - A custom path must have a `d.ts` extension.
-
-The wrangler global flags can also be used:
 
 <Render file="wrangler-commands/global-flags" product="workers" />

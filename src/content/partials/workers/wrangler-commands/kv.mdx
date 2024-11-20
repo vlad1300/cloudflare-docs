@@ -33,8 +33,6 @@ wrangler kv namespace create <NAMESPACE> [OPTIONS]
 - `--preview` <Type text="boolean" /> <MetaInfo text="optional" />
   - Interact with a preview namespace (the `preview_id` value).
 
-The wrangler global flags can also be used:
-
 <Render file="wrangler-commands/global-flags" product="workers" />
 
 The following is an example of using the `create` command to create a KV namespace called `MY_KV`.
@@ -74,8 +72,6 @@ List all KV namespaces associated with the current account ID.
 ```txt
 wrangler kv namespace list
 ```
-
-The wrangler global flags can also be used:
 
 <Render file="wrangler-commands/global-flags" product="workers" />
 
@@ -119,8 +115,6 @@ This command requires `--binding` or `--namespace-id`.
   - Perform on a specific environment.
 - `--preview` <Type text="boolean" /> <MetaInfo text="optional" />
   - Interact with a preview namespace instead of production.
-
-The wrangler global flags can also be used:
 
 <Render file="wrangler-commands/global-flags" product="workers" />
 
@@ -203,8 +197,6 @@ This command requires a `--binding` or `--namespace-id` flag.
 - `--persist-to` <Type text="string" /> <MetaInfo text="optional" />
   - Specify directory for locally persisted data.
 
-The wrangler global flags can also be used:
-
 <Render file="wrangler-commands/global-flags" product="workers" />
 
 The following is an example that puts a key-value into the namespace with binding name of `MY_KV`.
@@ -275,8 +267,6 @@ This command requires `--binding` or `--namespace-id`.
 - `--persist-to` <Type text="string" /> <MetaInfo text="optional" />
   - Specify directory for locally persisted data.
 
-The wrangler global flags can also be used:
-
 <Render file="wrangler-commands/global-flags" product="workers" />
 
 Below is an example that passes the Wrangler command through the `jq` command:
@@ -327,8 +317,6 @@ Exactly one of `--binding` or `--namespace-id` is required.
 - `--persist-to` <Type text="string" /> <MetaInfo text="optional" />
   - Specify directory for locally persisted data.
 
-The wrangler global flags can also be used:
-
 <Render file="wrangler-commands/global-flags" product="workers" />
 
 The following is an example that gets the value of the `"my-key"` key from the KV namespace with binding name `MY_KV`.
@@ -368,8 +356,6 @@ Exactly one of `--binding` or `--namespace-id` is required.
   - Interact with locally persisted data.
 - `--persist-to` <Type text="string" /> <MetaInfo text="optional" />
   - Specify directory for locally persisted data.
-
-The wrangler global flags can also be used:
 
 <Render file="wrangler-commands/global-flags" product="workers" />
 
@@ -424,8 +410,6 @@ This command requires `--binding` or `--namespace-id`.
   - Interact with locally persisted data.
 - `--persist-to` <Type text="string" /> <MetaInfo text="optional" />
   - Specify directory for locally persisted data.
-
-The wrangler global flags can also be used:
 
 <Render file="wrangler-commands/global-flags" product="workers" />
 
@@ -510,8 +494,6 @@ This command requires `--binding` or `--namespace-id`.
   - Interact with locally persisted data.
 - `--persist-to` <Type text="string" /> <MetaInfo text="optional" />
   - Specify directory for locally persisted data.
-
-The wrangler global flags can also be used:
 
 <Render file="wrangler-commands/global-flags" product="workers" />
 

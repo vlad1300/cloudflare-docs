@@ -39,8 +39,6 @@ wrangler hyperdrive create <CONFIG_NAME> [OPTIONS]
 - `--swr` <Type text="number" /> <MetaInfo text="optional" />
   - Stale While Revalidate - Indicates the number of seconds cache may serve the response after it becomes stale, cannot be set when caching is disabled.
 
-The wrangler global flags can also be used:
-
 <Render file="wrangler-commands/global-flags" product="workers" />
 
 <AnchorHeading title="`update`" slug="hyperdrive-update" depth={3} />
@@ -80,8 +78,6 @@ wrangler hyperdrive update <ID> [OPTIONS]
 - `--swr` <Type text="number" /> <MetaInfo text="optional" />
   - Stale While Revalidate - Indicates the number of seconds cache may serve the response after it becomes stale, cannot be set when caching is disabled.
 
-The wrangler global flags can also be used:
-
 <Render file="wrangler-commands/global-flags" product="workers" />
 
 <AnchorHeading title="`list`" slug="hyperdrive-list" depth={3} />
@@ -91,8 +87,6 @@ List all Hyperdrive configurations.
 ```txt
 wrangler hyperdrive list
 ```
-
-The wrangler global flags can also be used:
 
 <Render file="wrangler-commands/global-flags" product="workers" />
 
@@ -107,8 +101,6 @@ wrangler hyperdrive delete <ID>
 - `ID` <Type text="string" /> <MetaInfo text="required" />
   - The name of the Hyperdrive configuration to delete.
 
-The wrangler global flags can also be used:
-
 <Render file="wrangler-commands/global-flags" product="workers" />
 
 <AnchorHeading title="`get`" slug="hyperdrive-get" depth={3} />
@@ -121,7 +113,5 @@ wrangler hyperdrive get <ID>
 
 - `ID` <Type text="string" /> <MetaInfo text="required" />
   - The name of the Hyperdrive configuration to get.
-
-The wrangler global flags can also be used:
 
 <Render file="wrangler-commands/global-flags" product="workers" />
