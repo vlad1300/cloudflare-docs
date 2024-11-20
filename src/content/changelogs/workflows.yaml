@@ -5,6 +5,12 @@ productLink: "/workflows/"
 productArea: Developer platform
 productAreaLink: /workers/platform/changelog/platform/
 entries:
+  - publish_date: "2024-11-22"
+    title: "Multiple Workflows in local development now supported"
+    description: |-
+      Local development with `wrangler dev` now correctly supports multiple Workflow definitions per script.
+
+      There is no change to production Workflows, where multiple Workflow definitions per Worker script was already supported.
   - publish_date: "2024-10-23"
     title: "Workflows is now in public beta!"
     description: |-
