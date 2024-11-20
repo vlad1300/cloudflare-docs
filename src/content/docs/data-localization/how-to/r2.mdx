@@ -22,13 +22,13 @@ To configure Regional Services for hostnames [proxied](/dns/manage-dns-records/r
 
 Regional Services only applies to the custom domain configured for an R2 Bucket.
 
-### Send logs to an EU R2 bucket via an S3-Compatible endpoint
+### Send logs to an EU R2 bucket via an S3-compatible endpoint
 
-The following instructions will show you how to set up a Logpush job using an S3-Compatible endpoint to store logs in an R2 bucket with EU jurisdiction.
+The following instructions will show you how to set up a Logpush job using an S3-compatible endpoint to store logs in an R2 bucket with EU jurisdiction.
 
 1. Create an [R2 bucket](/r2/get-started/) in your Cloudflare account and set EU as the jurisdiction.
 
-2. Generate an API token for your R2 bucket. You have these two options available:
+2. Generate an API token for your R2 bucket. You have the following two options:
 
 <Details header="Generate a token for a specific bucket (recommended)">
 
@@ -80,7 +80,7 @@ This command will output a hash similar to `dxxxx391b`.
 
 </Details>
 
-3. Set up a Logpush destination using [S3-Compatible endpoint](/logs/get-started/enable-destinations/s3-compatible-endpoints/) and fill in the required fields as follows:
+3. Set up a Logpush destination using [S3-compatible endpoint](/logs/get-started/enable-destinations/s3-compatible-endpoints/) and fill in the required fields as follows:
 
 - **Bucket**: Enter the name of the R2 bucket you created with the EU jurisdiction.
 - **Path** (optional): If you want, you can specify a folder path to organize your logs.
@@ -89,7 +89,7 @@ This command will output a hash similar to `dxxxx391b`.
 - **Access Key ID**: Enter the Token ID created previously (`325xxxxcd`).
 - **Secret Access Key**: Use the SHA-256 hash of the token (`dxxxx391b`).
 
-End the configuration by selecting the fields you want to push to your R2 bucket.
+Complete the configuration by selecting the fields you want to push to your R2 bucket.
 
 ## Customer Metadata Boundary
 
