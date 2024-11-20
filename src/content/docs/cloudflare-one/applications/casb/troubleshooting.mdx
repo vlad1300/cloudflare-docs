@@ -13,29 +13,20 @@ Common integration issues include changes to SaaS app or cloud environment confi
 
 ## Identify unhealthy or outdated integrations
 
-To identify unhealthy CASB integrations, go to **CASB** > **Integrations** or **CASB** > **Findings**. If an integration is unhealthy, CASB will highlight it in red and set its status to **Broken**. If an integration is outdated, CASB will highlight it in blue and set its status to **Upgrade**.
+To identify unhealthy CASB integrations, go to **CASB** > **Integrations**. If an integration is unhealthy, CASB will set its status to **Broken**. If an integration is outdated, CASB will set its status to **Upgrade**.
 
 ## Repair an unhealthy integration
 
-You can repair unhealthy CASB integrations through your list of integrations or findings.
+:::note[Repair limitation]
+If CASB does not support self-service repairs for an integration, you will need to [delete](/cloudflare-one/applications/casb/#delete-an-integration) and recreate the integration to continue scanning.
+:::
 
-<Tabs> <TabItem label="Integrations">
+You can repair unhealthy CASB integrations through your list of integrations or findings.
 
 1. In [Zero Trust](https://one.dash.cloudflare.com/), go to **CASB** > **Integrations**.
 2. Choose your unhealthy integration.
 3. Select **Reauthorize**.
 4. In your SaaS app or cloud environment, reauthorize your account.
-
-</TabItem>
-
-<TabItem label="Findings">
-
-1. In [Zero Trust](https://one.dash.cloudflare.com/), go to **CASB** > **Findings**.
-2. Choose the finding highlighted in red. CASB will redirect you to the unhealthy integration.
-3. Select **Reauthorize**.
-4. In your SaaS app or cloud environment, reauthorize your account.
-
-</TabItem> </Tabs>
 
 ## Upgrade an integration
 
