@@ -7,7 +7,7 @@ sidebar:
   group:
     label: Post-quantum
 head: []
-description: Get an overview of how Cloudflare is deploying post-quantum cryptography to protect you against store now, decrypt later.
+description: Get an overview of how Cloudflare is deploying post-quantum cryptography to protect you against harvest now, decrypt later.
 ---
 
 Post-quantum cryptography (PQC) refers to cryptographic algorithms that have been designed to resist attacks from [quantum computers](https://www.cloudflare.com/learning/ssl/quantum/what-is-quantum-computing/). Cloudflare has been researching and [writing about post-quantum](https://blog.cloudflare.com/tag/post-quantum/) since 2017.
@@ -26,7 +26,7 @@ Before TLS can protect your communications, three cryptographic algorithms have 
 - **Key agreement:** A cryptographic protocol that allows client and server to safely agree on a shared key (such as `ECDH`).
 - **Signature algorithms:** Cryptographic algorithms used to generate the digital signatures in TLS certificates (such as `RSA` and `ECDSA`).
 
-As explained in our [blog post](https://blog.cloudflare.com/pq-2024/#two-migrations), it is urgent to migrate key agreement to post-quantum algorithms as soon as possible to protect against an adversary capable of storing today's encrypted communications until some time in the future when they can gain access to a sufficiently powerful quantum computer with which they can decrypt.
+As explained in our [blog post](https://blog.cloudflare.com/pq-2024/#two-migrations), it is urgent to migrate key agreement to post-quantum algorithms as soon as possible. The objective is to protect against an adversary capable of harvesting today's encrypted communications and storing it until some time in the future when they can gain access to a sufficiently powerful quantum computer to decrypt it.
 
 ### Hybrid key agreement
 
