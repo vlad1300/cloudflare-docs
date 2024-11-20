@@ -11,10 +11,6 @@ import { Render } from "~/components";
 	params={{ one: "Amazon Web Services (AWS) S3", two: "AWS account" }}
 />
 
-:::note
-The CASB integration for AWS S3 only supports posture-related findings.
-:::
-
 ## Integration prerequisites
 
 - An AWS account using AWS S3 (Simple Storage Service)
@@ -29,6 +25,8 @@ For the AWS S3 integration to function, Cloudflare CASB requires the following a
 - `s3:ListBucket`
 
 These permissions follow the principle of least privilege to ensure that only the minimum required access is granted. To learn more about each permission scope, refer to the [AWS S3 Permissions documentation](https://docs.aws.amazon.com/AmazonS3/latest/userguide/using-with-s3-policy-actions.html).
+
+## Compute account
 
 ## Security findings
 
