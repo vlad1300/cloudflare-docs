@@ -7,12 +7,12 @@ sidebar:
   group:
     label: Post-quantum
 head: []
-description: Get an overview of how Cloudflare is implementing post-quantum cryptography to protect you against store now, decrypt later.
+description: Get an overview of how Cloudflare is deploying post-quantum cryptography to protect you against store now, decrypt later.
 ---
 
-For years, Cloudflare has been researching and [writing about post-quantum](https://blog.cloudflare.com/tag/post-quantum/).
+Post-quantum cryptography (PQC) refers to cryptographic algorithms that have been designed to resist attacks from [quantum computers](https://www.cloudflare.com/learning/ssl/quantum/what-is-quantum-computing/). Cloudflare has been researching and [writing about post-quantum](https://blog.cloudflare.com/tag/post-quantum/) since 2017.
 
-To protect you against the risk of [store now, decrypt later](https://en.wikipedia.org/wiki/Harvest_now,_decrypt_later), and considering all the [connections](#three-connections-in-the-life-of-a-request) that take place when your website or application is on Cloudflare, we have deployed and are actively expanding the use of [post-quantum hybrid key agreement](#hybrid-key-agreement).
+To protect you against the risk of [harvest now, decrypt later](https://en.wikipedia.org/wiki/Harvest_now,_decrypt_later), and considering all the [connections](#three-connections-in-the-life-of-a-request) that take place when your website or application is on Cloudflare, we have deployed and are actively expanding the use of [post-quantum hybrid key agreement](#hybrid-key-agreement).
 
 :::caution[TLS 1.3]
 Cloudflare post-quantum key agreements are only supported in protocols based on TLS 1.3 (including HTTP/3) and are disabled for websites in [FIPS mode](/cloudflare-one/policies/gateway/http-policies/tls-decryption/#fips-compliance).
@@ -26,11 +26,11 @@ Before TLS can protect your communications, three cryptographic algorithms have 
 - **Key agreement:** A cryptographic protocol that allows client and server to safely agree on a shared key (such as `ECDH`).
 - **Signature algorithms:** Cryptographic algorithms used to generate the digital signatures in TLS certificates (such as `RSA` and `ECDSA`).
 
-As explained in our [blog post](https://blog.cloudflare.com/pq-2024/#two-migrations), the first, most urgent migration has to do with key agreement.
+As explained in our [blog post](https://blog.cloudflare.com/pq-2024/#two-migrations), it is urgent to migrate key agreement to post-quantum algorithms as soon as possible to protect against an adversary capable of storing today's encrypted communications until some time in the future when they can gain access to a sufficiently powerful quantum computer with which they can decrypt.
 
 ### Hybrid key agreement
 
-With TLS 1.3, [X25519](https://en.wikipedia.org/wiki/Curve25519) - an Elliptic Curve Diffie-Hellman (ECDH) protocol - is the current standard used in key agreement. However, its security can be easily broken by quantum computers using [Shor's algorithm](https://en.wikipedia.org/wiki/Shor%27s_algorithm).
+With TLS 1.3, [X25519](https://en.wikipedia.org/wiki/Curve25519) - an Elliptic Curve Diffie-Hellman (ECDH) protocol - is the most commonly used algorithm in key agreement. However, its security can be easily broken by quantum computers using [Shor's algorithm](https://en.wikipedia.org/wiki/Shor%27s_algorithm).
 
 In response to this, Cloudflare is an early adopter of ML-KEM, the post-quantum key agreement selected by the US National Institute of Standards and Technology (NIST). For a detailed timeline and more background information refer to [The state of the post-quantum Internet](https://blog.cloudflare.com/pq-2024/).
 
@@ -63,13 +63,13 @@ flowchart LR
 
 ### 1. Visitor to Cloudflare
 
-As of [October 2022](https://blog.cloudflare.com/post-quantum-for-all/), all websites and APIs served through Cloudflare over TLS 1.3 support post-quantum hybrid key agreement. However, the connection is only post-quantum secured if the client also supports post-quantum cryptography.
+As of [October 2022](https://blog.cloudflare.com/post-quantum-for-all/), all websites and APIs served through Cloudflare over TLS 1.3 support post-quantum hybrid key agreement. However, the connection is only post-quantum secured if the client also supports PQC.
 
 Refer to [Post-quantum cryptography support](/ssl/post-quantum-cryptography/pqc-support/) for a list of browsers and other clients that are compatible with hybrid key agreements.
 
 ### 2. Internal connections
 
-As announced in [September 2023](https://blog.cloudflare.com/post-quantum-cryptography-ga/), most internal connections for the different Cloudflare products and systems have been upgraded to use post-quantum cryptography.
+As announced in [September 2023](https://blog.cloudflare.com/post-quantum-cryptography-ga/), most internal connections for Cloudflare's products and systems have been upgraded to use PQC.
 
 ### 3. Cloudflare to your origin
 
