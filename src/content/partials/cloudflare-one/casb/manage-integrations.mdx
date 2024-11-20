@@ -2,11 +2,11 @@
 {}
 ---
 
-When you integrate a third-party SaaS application or cloud environment with Cloudflare CASB, you allow CASB to make API calls to the service and read relevant data on your behalf. The CASB integration permissions are read-only and follow the least privileged model. In other words, only the minimum access required to perform a scan is granted.
+When you integrate a third-party SaaS application or cloud environment with Cloudflare CASB, you allow CASB to make API calls to its endpoint and read relevant data on your behalf. The CASB integration permissions are read-only and follow the least privileged model. In other words, only the minimum access required to perform a scan is granted.
 
 ### Prerequisites
 
-Before you can integrate a third-party service with CASB, your account with that integration must meet certain requirements. To view the prerequisites and permissions for your SaaS application or cloud environment, refer to its [integration guide](/cloudflare-one/applications/scan-apps/casb-integrations/).
+Before you can integrate a SaaS application or cloud environment with CASB, your account with that integration must meet certain requirements. To view the prerequisites and permissions for your SaaS application or cloud environment, refer to its [integration guide](/cloudflare-one/applications/scan-apps/casb-integrations/).
 
 ### Add an integration
 
@@ -16,7 +16,7 @@ Before you can integrate a third-party service with CASB, your account with that
 4. Follow the step-by-step integration instructions in the UI.
 5. To run your first scan, select **Save integration**. CASB will redirect you to the [Findings page](/cloudflare-one/applications/scan-apps/manage-findings/) to view an in-depth listing of issues found.
 
-After the first scan, CASB will automatically scan your service on a frequent basis to keep up with any changes. Due to each application having their own set of requirements, scan intervals will vary, but the frequency is typically between every 1 hour and every 24 hours.
+After the first scan, CASB will automatically scan your SaaS application or cloud environment on a frequent basis to keep up with any changes. Due to each application having their own set of requirements, scan intervals will vary, but the frequency is typically between every 1 hour and every 24 hours.
 
 ### Pause an integration
 
