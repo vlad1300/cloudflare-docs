@@ -1,7 +1,6 @@
 ---
 pcx_content_type: integration-guide
 title: Juniper Networks SRX Series Firewalls
-
 ---
 
 This tutorial provides information and examples of how to configure Juniper Networks SRX Series Firewalls with Magic WAN.
@@ -10,7 +9,7 @@ This tutorial provides information and examples of how to configure Juniper Netw
 
 Confirm that you have the Cloudflare anycast IPs for your account. You should have two IPs allocated.
 
-The goal is to configure two IPsec tunnels for each endpoint. This provides us with tunnel redundancy and the ability to load balance ingress and egress traffic (via ECMP).
+The goal is to configure two IPsec tunnels for each endpoint. This provides you with tunnel redundancy and the ability to load balance ingress and egress traffic (via ECMP).
 
 Additionally, you will need to select two subnets (either `/31` or `/30`) for the Virtual Tunnel Interfaces (`st0.x`) to control what traffic is routed through the tunnels.
 
@@ -21,21 +20,21 @@ This section of the document will cover the configuration of:
 - Magic IPsec tunnels
 - Magic static routes
 
-### Magic IPsec Tunnels
+### Magic IPsec tunnels
 
 1. Start by [creating the IPsec tunnels](/magic-wan/configuration/manually/how-to/configure-tunnels/#add-tunnels) in the Cloudflare dashboard with the following values:
 	- **Tunnel name**: Up to 15 characters (no spaces).
 	- **Description** (Optional).
-	- **Interface address**: This is the Virtual Tunnel Interface (VTI = `st0.x`) RFC1918 address — the IP address specified in this dialog box is the address on the Cloudflare side of the tunnel.
+	- **Interface address**: This is the Virtual Tunnel Interface (VTI = `st0.x`) RFC 1918 address — the IP address specified in this dialog box is the address on the Cloudflare side of the tunnel.
 	- **Customer endpoint**: This is the public IP address the tunnel will be established with on the Juniper SRX.
 	- **Cloudflare endpoint**: One of the two Cloudflare anycast IP addresses.
 	- **Pre-shared key**: Choose **Add pre-shared key later**.
 2. Select **Add IPsec Tunnel** and fill in the values for the second tunnel to the same Juniper SRX:
-	- The IP addresses used for the Interface address must be a unique RFC1918 address (`/31` or `/30`).
+	- The IP addresses used for the Interface address must be a unique RFC 1918 address (`/31` or `/30`).
 	- The **Customer endpoint** is the same IP specified for the first tunnel.
 	- The **Cloudflare Endpoint** for the second tunnel will be the second Cloudflare anycast IP provisioned for your account.
-3. Select **Add tunnels**. We also recommend selecting **Test Tunnels** to ensure that the settings do not conflict with any other tunnels defined in your account and that the correct anycast IP addresses are specified.
-4. Because we chose to add a pre-shared key at a later stage, you will see a warning indicator next to the tunnel names after creating them. This is expected behavior and  indicates there is no pre-shared key associated with the tunnel.
+3. Select **Add tunnels**. We also recommend selecting **Test Tunnels** to ensure that the settings do not conflict with any other tunnels defined in your account and that you specified the correct anycast IP addresses.
+4. Because we chose to add a pre-shared key at a later stage, you will see a warning indicator next to the tunnel names after creating them. This is expected behavior and indicates there is no pre-shared key associated with the tunnel.
 5. Select **Edit** next to one of the tunnels to generate a pre-shared key.
 6. Select **Generate a new pre-shared key** > **Update and generate a pre-shared key**. Make note of the pre-shared key and store it somewhere safe.
 	:::note
@@ -67,7 +66,7 @@ Cloudflare leverages [equal-cost multi-path routing](/magic-wan/reference/traffi
 3. Select **Test routes** to ensure the settings will be accepted, and then select **Add Routes**.
 4. Confirm the routes were added correctly in **Magic WAN** > **Configuration** > **Static Routes**.
 
-## Juniper SRX Configuration
+## Juniper SRX configuration
 
 The configuration settings in this document are based on JUNOS 21.4R3-S4.9.
 
@@ -83,7 +82,7 @@ The following elements will be configured on the Juniper SRX firewall(s):
 - Static routes
 - Security policies
 
-### Tunnel Interfaces
+### Tunnel interfaces
 
 1. Add two tunnel interfaces:
 
@@ -112,7 +111,7 @@ unit 1 {
 
 ### Security Zone (Cloudflare) - tunnel interfaces
 
-Define a security zone and add both tunnel interfaces to it. At a minimum, the interfaces should allow ping, but this zone only contains point-to-point connections between the firewall and the customer network namespace. Setting it to `all` for system-services and protocols should be fine.
+Define a security zone and add both tunnel interfaces to it. At a minimum, the interfaces should allow `ping`, but this zone only contains point-to-point connections between the firewall and the customer network namespace. Setting it to `all` for system-services and protocols should be fine.
 
 ```txt
 set security zones security-zone cloudflare interfaces st0.0 host-inbound-traffic system-services all
@@ -149,7 +148,7 @@ interfaces {
 
 ### Security zone (untrust) - `host-inbound-traffic`
 
-Add `ping` and `ike` to the security zone containing the external interface used to establish the IPsec tunnels to Cloudflare. If your security policy blocks ping by default, you will need to create a firewall-filter to allow ICMP from the [Cloudflare IPv4 address space](https://www.cloudflare.com/ips-v4) — not covered in this tutorial.
+Add `ping` and `ike` to the security zone containing the external interface used to establish the IPsec tunnels to Cloudflare. If your security policy blocks `ping` by default, you will need to create a firewall-filter to allow ICMP from the [Cloudflare IPv4 address space](https://www.cloudflare.com/ips-v4) — not covered in this tutorial.
 
 ```txt
 set security zones security-zone untrust interfaces ge-0/0/2.0 host-inbound-traffic system-services ping
@@ -440,11 +439,11 @@ set security ike traceoptions flag all
 The log file can be viewed by doing the following:
 
 1. From an operational mode, run **start shell**.
-2. Then use the `tail` command to view the contents of the log file in real-time:
+2. Use the `tail` command to view the contents of the log file in real-time:
 	```txt
 	tail -f /var/log/ike-debug.log
 	```
-3. Press  <kbd>CTRL+C </kbd> when finished.
+3. Press  <kbd>CTRL+C</kbd> when finished.
 4. Type `exit` to return to the operational mode prompt.
 
 Either deactivate `traceoptions` or delete `traceoptions` once debugging is complete.
