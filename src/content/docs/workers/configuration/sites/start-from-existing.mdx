@@ -5,7 +5,7 @@ sidebar:
   order: 1
 ---
 
-import { Render, TabItem, Tabs } from "~/components";
+import { Render, TabItem, Tabs, WranglerConfig } from "~/components";
 
 <Render file="workers_sites" />
 
@@ -35,8 +35,6 @@ To deploy a pre-existing static site project, start with a pre-generated site. W
    - `src/index.ts`: A basic Cloudflare Worker, written in TypeScript.
 
 2. Add your site’s build/output directory to the `wrangler.toml` file:
-
-   import { WranglerConfig } from "~/components";
 
    <WranglerConfig>
 

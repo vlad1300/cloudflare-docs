@@ -11,7 +11,7 @@ sidebar:
 
 ---
 
-import { TabItem, Tabs, Steps, Render } from "~/components"
+import { TabItem, Tabs, Steps, Render, WranglerConfig } from "~/components"
 
 Workers Logs lets you automatically collect, store, filter, and analyze logging data emitted from Cloudflare Workers. Data is written to your Cloudflare Account, and you can query it in the dashboard for each of your Workers. All newly created Workers will come with the observability setting enabled by default.
 
@@ -29,11 +29,9 @@ Minimum required Wrangler version: 3.78.6. Check your version by running `wrangl
 
 You must add the observability setting for your Worker to write logs to Workers Logs. Add the following setting to your Worker's `wrangler.toml` file and redeploy your Worker.
 
-	import { WranglerConfig } from "~/components";
-
 <WranglerConfig>
 
-```toml
+	```toml
 	[observability]
 	enabled = true
 	head_sampling_rate = 1 # optional. default = 1.
