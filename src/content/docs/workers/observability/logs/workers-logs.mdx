@@ -32,25 +32,23 @@ You must add the observability setting for your Worker to write logs to Workers 
 
 <WranglerConfig>
 
-````toml
-	[observability]
-	enabled = true
-	head_sampling_rate = 1 # optional. default = 1.
-	```
+    ```toml
+    [observability]
+    enabled = true
+    head_sampling_rate = 1 # optional. default = 1.
+    ```
 
-</WranglerConfig>
+<WranglerConfig>
 
 [Head-based sampling](/workers/observability/logs/workers-logs/#head-based-sampling) allows you set the percentage of Workers requests that are logged.
 
 ### Enabling with environments
 
-[Environments](/workers/wrangler/environments/) allow you to deploy the same Worker application with different configurations. For example, you may want to configure a different `head_sampling_rate` to staging and production. To configure observability for your environment:
-	1. Add the following configuration below `[env.<NAME>]`
-
+[Environments](/workers/wrangler/environments/) allow you to deploy the same Worker application with different configurations. For example, you may want to configure a different `head_sampling_rate` to staging and production. To configure observability for your environment: 1. Add the following configuration below `[env.<NAME>]`
 
 <WranglerConfig>
 
-```toml
+````toml
 	[env.<NAME>.observability]
 	enabled = true
 	head_sampling_rate = 1 # optional
@@ -93,16 +91,23 @@ Each Workers invocation returns a single invocation log that contains details su
 
 In the Workers Logs UI, logs are presented with a localized timestamp and a message. The message is dependent on the invocation handler. For example, Fetch requests will have a message describing the request method and the request URL, while cron events will be listed as cron. Below is a list of invocation handlers along with their invocation message.
 
-| Invocation Handler                                              | Invocation Message         |
-| --------------------------------------------------------------- | -------------------------- |
-| [Alarm](/durable-objects/api/alarms/)                           | \<Scheduled Time\>         |
-| [Email](/email-routing/email-workers/runtime-api/)              | \<Email Recipient\>        |
-| [Fetch](/workers/runtime-apis/handlers/fetch/)                  | \<Method\> \<URL\>         |
-| [Queue](/queues/configuration/javascript-apis/#consumer)        | \<Queue Name\>             |
-| [Cron](/workers/runtime-apis/handlers/scheduled/)               | \<UNIX-cron schedule\>     |
-| [Tail](/workers/runtime-apis/handlers/tail/)                    | tail                       |
-| [RPC](/workers/runtime-apis/rpc/)                               | \<RPC method\>             |
-| [WebSocket](/workers/examples/websockets/)                      | \<WebSocket Event Type\>   |
+Invocation logs can be disabled in wrangler by adding the `invocation_logs = false` configuration.
+
+```toml
+[observability.logs]
+invocation_logs = false
+````
+
+| Invocation Handler                                       | Invocation Message       |
+| -------------------------------------------------------- | ------------------------ |
+| [Alarm](/durable-objects/api/alarms/)                    | \<Scheduled Time\>       |
+| [Email](/email-routing/email-workers/runtime-api/)       | \<Email Recipient\>      |
+| [Fetch](/workers/runtime-apis/handlers/fetch/)           | \<Method\> \<URL\>       |
+| [Queue](/queues/configuration/javascript-apis/#consumer) | \<Queue Name\>           |
+| [Cron](/workers/runtime-apis/handlers/scheduled/)        | \<UNIX-cron schedule\>   |
+| [Tail](/workers/runtime-apis/handlers/tail/)             | tail                     |
+| [RPC](/workers/runtime-apis/rpc/)                        | \<RPC method\>           |
+| [WebSocket](/workers/examples/websockets/)               | \<WebSocket Event Type\> |
 
 ### Custom logs
 
@@ -114,18 +119,18 @@ You can also add custom logs throughout your code. Any `console.log` statements 
 
 ```js
 export default {
-        async fetch(request) {
-                const { cf } = request;
-                const { city, country } = cf;
+	async fetch(request) {
+		const { cf } = request;
+		const { city, country } = cf;
 
-                console.log(`Request came from city: ${city} in country: ${country}`);
+		console.log(`Request came from city: ${city} in country: ${country}`);
 
-                return new Response("Hello worker!", {
-                        headers: { "content-type": "text/plain" },
-                });
-        },
+		return new Response("Hello worker!", {
+			headers: { "content-type": "text/plain" },
+		});
+	},
 };
-````
+```
 
 </TabItem> <TabItem label="Service Worker" icon="seti:javascript">
 
