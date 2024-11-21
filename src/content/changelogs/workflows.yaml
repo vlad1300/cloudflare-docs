@@ -5,7 +5,13 @@ productLink: "/workflows/"
 productArea: Developer platform
 productAreaLink: /workers/platform/changelog/platform/
 entries:
-  - publish_date: "2024-11-22"
+  - publish_date: "2024-11-21"
+    title: "Worker bindings "
+    description: |-
+      You can now call `create()` without any arguments when using the [Workers API](/workflows/build/workers-api/#create) for Workflows. Workflows will automatically generate the ID of the Workflow on your behalf.
+
+      This addresses a bug that caused calls to `create()` to fail when provided with no arguments.
+  - publish_date: "2024-11-20"
     title: "Multiple Workflows in local development now supported"
     description: |-
       Local development with `wrangler dev` now correctly supports multiple Workflow definitions per script.
