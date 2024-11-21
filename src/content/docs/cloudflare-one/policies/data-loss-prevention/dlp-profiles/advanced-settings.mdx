@@ -13,7 +13,20 @@ This page lists the advanced settings available when configuring a [predefined](
 
 Match count refers to the number of times that any enabled entry in the profile can be detected before an action is triggered, such as blocking or logging. For example, if you select a match count of 10, the scanned file or HTTP body must contain 11 or more matching strings. Detections do not have to be unique.
 
+## Confidence levels
+
+Confidence levels indicate how confident Cloudflare DLP is in a DLP detection. The confidence is determined by inspecting the content for proximity keywords around the detection.
+
+Low confidence detections are generally based on regular expressions, require few keywords, and will trigger more often. High confidence detections require more keywords, will trigger less often, and have a higher likelihood of accuracy. Setting the confidence to Low will also consider Medium and High confidence detections as matches. Setting the confidence to Medium or High will filter out the lower confidence detections.
+
+Confidence level is set on the DLP profile. When you select a confidence in the dashboard, you will see which DLP entries will be affected by the confidence level. Entries that do not reflect a confidence level in the dashboard are not yet supported or are not applicable.
+
+For inline detections in Gateway, if you would like to see Low and Medium confidence detections but block High confidence detections, Cloudflare recommends using two policies. The first policy should use a Low confidence DLP profile with an Allow action. The second policy should use a High confidence DLP profile with a Block action.
+
 ## Context analysis
+:::note
+Context analysis has been superseded by confidence levels. Customers who had context analysis turned on will be migrated to confidence levels where applicable.
+:::
 
 Context analysis restricts detections based on proximity keywords to prevent false positives. Proximity keywords must be detected within a distance of 1000 bytes (~1000 characters) from the original detection to trigger an context-aware detection. For example, the string `123-45-6789` will only count as a detection if in proximity to keywords such as `ssn`.
 
