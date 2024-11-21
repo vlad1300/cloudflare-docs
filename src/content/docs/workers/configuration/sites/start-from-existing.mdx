@@ -36,17 +36,23 @@ To deploy a pre-existing static site project, start with a pre-generated site. W
 
 2. Add your site’s build/output directory to the `wrangler.toml` file:
 
-   ```toml
-   [site]
-   bucket = "./public" # <-- Add your build directory name here.
-   ```
+import { WranglerConfig } from "~/components";
 
-   The default directories for the most popular static site generators are listed below:
+<WranglerConfig>
 
-   - Hugo: `public`
-   - Gatsby: `public`
-   - Jekyll: `_site`
-   - Eleventy: `_site`
+```toml
+[site]
+bucket = "./public" # <-- Add your build directory name here.
+```
+
+</WranglerConfig>
+
+The default directories for the most popular static site generators are listed below:
+
+- Hugo: `public`
+- Gatsby: `public`
+- Jekyll: `_site`
+- Eleventy: `_site`
 
 3. Install the `@cloudflare/kv-asset-handler` package in your project:
 
@@ -122,13 +128,17 @@ async function handleEvent(event) {
 
 6. Deploy your site to a [custom domain](/workers/configuration/routing/custom-domains/) that you own and have already attached as a Cloudflare zone. Add a `route` property to the `wrangler.toml` file.
 
-   ```toml
-   route = "https://example.com/*"
-   ```
+<WranglerConfig>
 
-   :::note
+```toml
+route = "https://example.com/*"
+```
 
-   Refer to the documentation on [Routes](/workers/configuration/routing/routes/) to configure a `route` properly.
-   :::
+</WranglerConfig>
+
+:::note
+
+Refer to the documentation on [Routes](/workers/configuration/routing/routes/) to configure a `route` properly.
+:::
 
 Learn more about [configuring your project](/workers/wrangler/configuration/).

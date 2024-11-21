@@ -62,6 +62,12 @@ If an API you wish to use is missing and you want to suggest that Workers suppor
 
 To enable only the Node.js `AsyncLocalStorage` API, use the `nodejs_als` compatibility flag.
 
+import { WranglerConfig } from "~/components";
+
+<WranglerConfig>
+
 ```toml
 compatibility_flags = [ "nodejs_als" ]
 ```
+
+</WranglerConfig>

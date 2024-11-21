@@ -3,12 +3,16 @@ title: Access Durable Objects Storage
 pcx_content_type: concept
 sidebar:
   order: 4
-
 ---
 
 import { Render, GlossaryTooltip } from "~/components";
 
-<GlossaryTooltip term="Durable Object">Durable Objects</GlossaryTooltip> are a powerful compute API that provides a compute with storage building block. Each Durable Object has its own private, transactional and strongly consistent storage. Durable Objects <GlossaryTooltip term="Storage API">Storage API</GlossaryTooltip> provides access to a Durable Object's attached storage.
+<GlossaryTooltip term="Durable Object">Durable Objects</GlossaryTooltip> are a
+powerful compute API that provides a compute with storage building block. Each
+Durable Object has its own private, transactional and strongly consistent
+storage. Durable Objects <GlossaryTooltip term="Storage API">
+	Storage API
+</GlossaryTooltip> provides access to a Durable Object's attached storage.
 
 A Durable Object's [in-memory state](/durable-objects/reference/in-memory-state/) is preserved as long as the Durable Object is not evicted from memory. Inactive Durable Objects with no incoming request traffic can be evicted. There are normal operations like [code deployments](/workers/configuration/versions-and-deployments/) that trigger Durable Objects to restart and lose their in-memory state. For these reasons, you should use Storage API to persist state durably on disk that needs to survive eviction or restart of Durable Objects.
 
@@ -24,24 +28,25 @@ A common pattern is to initialize a Durable Object from [persistent storage](/du
 import { DurableObject } from "cloudflare:workers";
 
 export class Counter extends DurableObject {
-  value: number;
+	value: number;
 
-  constructor(ctx: DurableObjectState, env: Env) {
-    super(ctx, env);
+	constructor(ctx: DurableObjectState, env: Env) {
+		super(ctx, env);
 
-    // `blockConcurrencyWhile()` ensures no requests are delivered until
-    // initialization completes.
-    ctx.blockConcurrencyWhile(async () => {
-      // After initialization, future reads do not need to access storage.
-      this.value = (await ctx.storage.get("value")) || 0;
-    });
-  }
+		// `blockConcurrencyWhile()` ensures no requests are delivered until
+		// initialization completes.
+		ctx.blockConcurrencyWhile(async () => {
+			// After initialization, future reads do not need to access storage.
+			this.value = (await ctx.storage.get("value")) || 0;
+		});
+	}
 
-  async getCounterValue() {
-    return this.value;
-  }
+	async getCounterValue() {
+		return this.value;
+	}
 }
 ```
+
 ### Removing a Durable Object's storage
 
 A Durable Object fully ceases to exist if, when it shuts down, its storage is empty. If you never write to a Durable Object's storage at all (including setting <GlossaryTooltip term="alarm">alarms</GlossaryTooltip>), then storage remains empty, and so the Durable Object will no longer exist once it shuts down.
@@ -58,11 +63,17 @@ The new beta version of Durable Objects is available where each Durable Object h
 
 To allow a new Durable Object class to use SQLite storage backend, use `new_sqlite_classes` on the migration in your Worker's `wrangler.toml` file:
 
+import { WranglerConfig } from "~/components";
+
+<WranglerConfig>
+
 ```toml
 [[migrations]]
 tag = "v1" # Should be unique for each entry
 new_sqlite_classes = ["MyDurableObject"] # Array of new classes
 ```
+
+</WranglerConfig>
 
 [SQL API](/durable-objects/api/storage-api/#sqlexec) is available on `ctx.storage.sql` parameter passed to the Durable Object constructor.
 
@@ -74,4 +85,4 @@ new_sqlite_classes = ["MyDurableObject"] # Array of new classes
 
 ## Related resources
 
-* [Zero-latency SQLite storage in every Durable Object blog post](https://blog.cloudflare.com/sqlite-in-durable-objects)
+- [Zero-latency SQLite storage in every Durable Object blog post](https://blog.cloudflare.com/sqlite-in-durable-objects)

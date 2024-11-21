@@ -28,6 +28,10 @@ npx wrangler hyperdrive create my-first-hyperdrive --connection-string="postgres
 
 The command above will output the ID of your Hyperdrive, which you will need to set in the `wrangler.toml` configuration file for your Workers project:
 
+import { WranglerConfig } from "~/components";
+
+<WranglerConfig>
+
 ```toml
 # required for database drivers to function
 compatibility_flags = ["nodejs_compat"]
@@ -38,6 +42,8 @@ binding = "HYPERDRIVE"
 id = "<your-hyperdrive-id-here>"
 ```
 
+</WranglerConfig>
+
 This will allow Hyperdrive to generate a dynamic connection string within your Worker that you can pass to your existing database driver. Refer to [Driver examples](#driver-examples) to learn how to set up a database driver with Hyperdrive.
 
 Refer to the [Examples documentation](/hyperdrive/examples/) for step-by-step guides on how to set up Hyperdrive with several popular database providers.
@@ -46,13 +52,13 @@ Refer to the [Examples documentation](/hyperdrive/examples/) for step-by-step gu
 
 Hyperdrive uses Workers [TCP socket support](/workers/runtime-apis/tcp-sockets/#connect) to support TCP connections to databases. The following table lists the supported database drivers and the minimum version that works with Hyperdrive:
 
-| Driver                        | Documentation                                                                | Minimum Version Required | Notes                                                                                                                                                                                                        |
-| ----------------------------- | ---------------------------------------------------------------------------- | ------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| Postgres.js (**recommended**) | [Postgres.js documentation](https://github.com/porsager/postgres)                     | `postgres@3.4.4`         | Supported in both Workers & Pages.                                                                                                                                                                           |
-| node-postgres - `pg`          | [node-postgres - `pg` documentation](https://node-postgres.com/)                      | `pg@8.13.0`              | `8.11.4` introduced a bug with URL parsing and will not work. `8.11.5` fixes this. Requires `compatibility_flags = ["nodejs_compat"]` and `compatibility_date = "2024-09-23"` - refer to [Node.js compatibility](/workers/runtime-apis/nodejs). Requires wrangler `3.78.7` or later. |
-| Drizzle                       | [Drizzle documentation](https://orm.drizzle.team/)                                    | `0.26.2`^                |                                                                                                                                                                                                              |
-| Kysely                        | [Kysely documentation](https://kysely.dev/)                                           | `0.26.3`^                |                                                                                                                                                                                                              |
-| [rust-postgres](https://github.com/sfackler/rust-postgres) | [rust-postgres documentation](https://docs.rs/postgres/latest/postgres/) | `v0.19.8` | Use the [`query_typed`](https://docs.rs/postgres/latest/postgres/struct.Client.html#method.query_typed) method for best performance. |
+| Driver                                                     | Documentation                                                            | Minimum Version Required | Notes                                                                                                                                                                                                                                                                                |
+| ---------------------------------------------------------- | ------------------------------------------------------------------------ | ------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| Postgres.js (**recommended**)                              | [Postgres.js documentation](https://github.com/porsager/postgres)        | `postgres@3.4.4`         | Supported in both Workers & Pages.                                                                                                                                                                                                                                                   |
+| node-postgres - `pg`                                       | [node-postgres - `pg` documentation](https://node-postgres.com/)         | `pg@8.13.0`              | `8.11.4` introduced a bug with URL parsing and will not work. `8.11.5` fixes this. Requires `compatibility_flags = ["nodejs_compat"]` and `compatibility_date = "2024-09-23"` - refer to [Node.js compatibility](/workers/runtime-apis/nodejs). Requires wrangler `3.78.7` or later. |
+| Drizzle                                                    | [Drizzle documentation](https://orm.drizzle.team/)                       | `0.26.2`^                |                                                                                                                                                                                                                                                                                      |
+| Kysely                                                     | [Kysely documentation](https://kysely.dev/)                              | `0.26.3`^                |                                                                                                                                                                                                                                                                                      |
+| [rust-postgres](https://github.com/sfackler/rust-postgres) | [rust-postgres documentation](https://docs.rs/postgres/latest/postgres/) | `v0.19.8`                | Use the [`query_typed`](https://docs.rs/postgres/latest/postgres/struct.Client.html#method.query_typed) method for best performance.                                                                                                                                                 |
 
 ^ _The marked libraries use `node-postgres` as a dependency._
 

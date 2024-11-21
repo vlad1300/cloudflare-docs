@@ -3,7 +3,6 @@ pcx_content_type: how-to
 title: 1. Migrate webpack projects
 sidebar:
   order: 2
-
 ---
 
 This guide describes the steps to migrate a webpack project from Wrangler v1 to Wrangler v2. After completing this guide, [update your Wrangler version](/workers/wrangler/migration/v1-to-v2/update-v1-to-v2/).
@@ -58,15 +57,15 @@ You should see this reflected in your `package.json` file:
 
 ```json
 {
-  "name": "my-worker",
-  "version": "x.y.z",
-  // ...
-  "devDependencies": {
-    // ...
-    "wranglerjs-compat-webpack-plugin": "^x.y.z",
-    "webpack": "^4.46.0",
-    "webpack-cli": "^x.y.z"
-  }
+	"name": "my-worker",
+	"version": "x.y.z",
+	// ...
+	"devDependencies": {
+		// ...
+		"wranglerjs-compat-webpack-plugin": "^x.y.z",
+		"webpack": "^4.46.0",
+		"webpack-cli": "^x.y.z"
+	}
 }
 ```
 
@@ -76,12 +75,12 @@ Modify your `webpack.config.js` file to include the plugin you just installed.
 
 ```js
 const {
-  WranglerJsCompatWebpackPlugin,
+	WranglerJsCompatWebpackPlugin,
 } = require("wranglerjs-compat-webpack-plugin");
 
 module.exports = {
-  // ...
-  plugins: [new WranglerJsCompatWebpackPlugin()],
+	// ...
+	plugins: [new WranglerJsCompatWebpackPlugin()],
 };
 ```
 
@@ -89,13 +88,13 @@ module.exports = {
 
 ```json
 {
-  "name": "my-worker",
-  "version": "2.0.0",
-  // ...
-  "scripts": {
-    "build": "webpack" // <-- Add this line!
-    // ...
-  }
+	"name": "my-worker",
+	"version": "2.0.0",
+	// ...
+	"scripts": {
+		"build": "webpack" // <-- Add this line!
+		// ...
+	}
 }
 ```
 
@@ -103,15 +102,23 @@ module.exports = {
 
 Remove the `type` and `webpack_config` keys from your `wrangler.toml` file, as they are not supported anymore.
 
+import { WranglerConfig } from "~/components";
+
+<WranglerConfig>
+
 ```toml
 # Remove these!
 type = "webpack"
 webpack_config = "webpack.config.js"
 ```
 
+</WranglerConfig>
+
 5. Tell Wrangler how to bundle your Worker.
 
 Wrangler no longer has any knowledge of how to build your Worker. You will need to tell it how to call webpack and where to look for webpack's output. This translates into two fields:
+
+<WranglerConfig>
 
 ```toml
 main = "./worker/script.js" # by default, or whatever file webpack outputs
@@ -119,6 +126,8 @@ main = "./worker/script.js" # by default, or whatever file webpack outputs
 command = "npm run build" # or "yarn build"
 # ...
 ```
+
+</WranglerConfig>
 
 6. Test your project.
 

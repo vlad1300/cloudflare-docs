@@ -63,10 +63,16 @@ cd pdf-summarizer
 
 Using Static Assets, you can serve the front-end of your application from your Worker. To use Static Assets, you need to add the required bindings to your `wrangler.toml` file.
 
+import { WranglerConfig } from "~/components";
+
+<WranglerConfig>
+
 ```toml
 [assets]
 directory = "public"
 ```
+
+</WranglerConfig>
 
 Next, create a `public` directory and add an `index.html` file. The `index.html` file should contain the following HTML code:
 
@@ -233,11 +239,15 @@ When you open the URL in your browser, you will see that there is a file upload 
 
 To handle the file upload, you will first need to add the R2 binding. In the `wrangler.toml` file, add the following code:
 
+<WranglerConfig>
+
 ```toml
 [[r2_buckets]]
 binding = "MY_BUCKET"
 bucket_name = "<R2_BUCKET_NAME>"
 ```
+
+</WranglerConfig>
 
 Replace `<R2_BUCKET_NAME>` with the name of your R2 bucket.
 

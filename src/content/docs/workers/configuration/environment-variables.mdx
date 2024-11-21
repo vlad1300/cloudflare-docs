@@ -3,10 +3,9 @@ pcx_content_type: configuration
 title: Environment variables
 head: []
 description: Environment variables are a type of binding that allow you to attach text strings or JSON values to your Worker
-
 ---
 
-import { Render, TabItem, Tabs } from "~/components"
+import { Render, TabItem, Tabs } from "~/components";
 
 ## Background
 
@@ -26,23 +25,23 @@ Refer to the following example on how to access the `API_HOST` environment varia
 
 ```js
 export default {
-  async fetch(request, env, ctx) {
-    return new Response(`API host: ${env.API_HOST}`);
-  }
-}
+	async fetch(request, env, ctx) {
+		return new Response(`API host: ${env.API_HOST}`);
+	},
+};
 ```
 
 </TabItem> <TabItem label="TypeScript" icon="seti:typescript">
 
 ```ts
 export interface Env {
-  API_HOST: string;
+	API_HOST: string;
 }
 
 export default {
-  async fetch(request, env, ctx): Promise<Response> {
-    return new Response(`API host: ${env.API_HOST}`);
-  }
+	async fetch(request, env, ctx): Promise<Response> {
+		return new Response(`API host: ${env.API_HOST}`);
+	},
 } satisfies ExportedHandler<Env>;
 ```
 
@@ -51,6 +50,10 @@ export default {
 `vars` is a non-inheritable key. [Non-inheritable keys](/workers/wrangler/configuration/#non-inheritable-keys) are configurable at the top-level, but cannot be inherited by environments and must be specified for each environment.
 
 To define environment variables for different environments, refer to the example below:
+
+import { WranglerConfig } from "~/components";
+
+<WranglerConfig>
 
 ```toml
 name = "my-worker-dev"
@@ -65,6 +68,8 @@ API_HOST = "production.example.com"
 API_ACCOUNT_ID = "production_example_user"
 SERVICE_X_DATA = { URL = "service-x-api.prod.example", MY_ID = 456 }
 ```
+
+</WranglerConfig>
 
 For local development with `wrangler dev`, variables in `wrangler.toml` are automatically overridden by any values defined in a `.dev.vars` file located in the root directory of your worker. This is useful for providing values you do not want to check in to source control.
 
@@ -90,9 +95,7 @@ To add environment variables via the dashboard:
 
 :::caution[Plaintext strings and secrets]
 
-
 Select the **Secret** type if your environment variable is a [secret](/workers/configuration/secrets/).
-
 
 :::
 
@@ -100,4 +103,4 @@ Select the **Secret** type if your environment variable is a [secret](/workers/c
 
 ## Related resources
 
-* Learn how to access environment variables in [ES modules syntax](/workers/reference/migrate-to-module-workers/) for an optimized experience.
+- Learn how to access environment variables in [ES modules syntax](/workers/reference/migrate-to-module-workers/) for an optimized experience.

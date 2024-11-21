@@ -4,10 +4,9 @@ title: Remote-procedure call (RPC)
 head: []
 description: The built-in, JavaScript-native RPC system built into Workers and
   Durable Objects.
-
 ---
 
-import { DirectoryListing, Render } from "~/components"
+import { DirectoryListing, Render } from "~/components";
 
 :::note
 To use RPC, [define a compatibility date](/workers/configuration/compatibility-dates) of `2024-04-03` or higher, or include `rpc` in your [compatibility flags](/workers/configuration/compatibility-flags/#nodejs-compatibility-flag).
@@ -15,8 +14,8 @@ To use RPC, [define a compatibility date](/workers/configuration/compatibility-d
 
 Workers provide a built-in, JavaScript-native [RPC (Remote Procedure Call)](https://en.wikipedia.org/wiki/Remote_procedure_call) system, allowing you to:
 
-* Define public methods on your Worker that can be called by other Workers on the same Cloudflare account, via [Service Bindings](/workers/runtime-apis/bindings/service-bindings/rpc)
-* Define public methods on [Durable Objects](/durable-objects) that can be called by other workers on the same Cloudflare account that declare a binding to it.
+- Define public methods on your Worker that can be called by other Workers on the same Cloudflare account, via [Service Bindings](/workers/runtime-apis/bindings/service-bindings/rpc)
+- Define public methods on [Durable Objects](/durable-objects) that can be called by other workers on the same Cloudflare account that declare a binding to it.
 
 The RPC system is designed to feel as similar as possible to calling a JavaScript function in the same Worker. In most cases, you should be able to write code in the same way you would if everything was in a single Worker.
 
@@ -42,11 +41,11 @@ As an exception to Structured Clone, application-defined classes (or objects wit
 
 The RPC system also supports a number of types that are not Structured Cloneable, including:
 
-* Functions, which are replaced by stubs that call back to the sender.
-* Application-defined classes that extend `RpcTarget`, which are similarly replaced by stubs.
-* [ReadableStream](/workers/runtime-apis/streams/readablestream/) and [WriteableStream](/workers/runtime-apis/streams/writablestream/), with automatic streaming flow control.
-* [Request](/workers/runtime-apis/request/) and [Response](/workers/runtime-apis/response/), for conveniently representing HTTP messages.
-* RPC stubs themselves, even if the stub was received from a third Worker.
+- Functions, which are replaced by stubs that call back to the sender.
+- Application-defined classes that extend `RpcTarget`, which are similarly replaced by stubs.
+- [ReadableStream](/workers/runtime-apis/streams/readablestream/) and [WriteableStream](/workers/runtime-apis/streams/writablestream/), with automatic streaming flow control.
+- [Request](/workers/runtime-apis/request/) and [Response](/workers/runtime-apis/response/), for conveniently representing HTTP messages.
+- RPC stubs themselves, even if the stub was received from a third Worker.
 
 ## Functions
 
@@ -68,41 +67,49 @@ To use an instance of a class that you define as a parameter or return value of 
 
 Consider the following example:
 
+import { WranglerConfig } from "~/components";
+
+<WranglerConfig>
+
 ```toml
 name = "counter"
 main = "./src/counter.js"
 ```
 
+</WranglerConfig>
+
 ```js
 import { WorkerEntrypoint, RpcTarget } from "cloudflare:workers";
 
 class Counter extends RpcTarget {
-  #value = 0;
+	#value = 0;
 
-  increment(amount) {
-    this.#value += amount;
-    return this.#value;
-  }
+	increment(amount) {
+		this.#value += amount;
+		return this.#value;
+	}
 
-  get value() {
-    return this.#value;
-  }
+	get value() {
+		return this.#value;
+	}
 }
 
 export class CounterService extends WorkerEntrypoint {
-  async newCounter() {
-    return new Counter();
-  }
+	async newCounter() {
+		return new Counter();
+	}
 }
 
 export default {
-  fetch() {
-    return new Response("ok")
-  }
-}
+	fetch() {
+		return new Response("ok");
+	},
+};
 ```
 
 The method `increment` can be called directly by the client, as can the public property `value`:
+
+<WranglerConfig>
 
 ```toml
 name = "client-worker"
@@ -112,20 +119,22 @@ services = [
 ]
 ```
 
+</WranglerConfig>
+
 ```js
 export default {
-  async fetch(request, env) {
-    using counter = await env.COUNTER_SERVICE.newCounter();
+	async fetch(request, env) {
+		using counter = await env.COUNTER_SERVICE.newCounter();
 
-    await counter.increment(2);   // returns 2
-    await counter.increment(1);   // returns 3
-    await counter.increment(-5);  // returns -2
+		await counter.increment(2); // returns 2
+		await counter.increment(1); // returns 3
+		await counter.increment(-5); // returns -2
 
-    const count = await counter.value;  // returns -2
+		const count = await counter.value; // returns -2
 
-    return new Response(count);
-  }
-}
+		return new Response(count);
+	},
+};
 ```
 
 :::note
@@ -179,24 +188,24 @@ This works when calling properties of objects returned by RPC methods as well. F
 import { WorkerEntrypoint } from "cloudflare:workers";
 
 export class MyService extends WorkerEntrypoint {
-  async foo() {
-    return {
-      bar: {
-        baz: () => "qux"
-      }
-    }
-  }
+	async foo() {
+		return {
+			bar: {
+				baz: () => "qux",
+			},
+		};
+	}
 }
 ```
 
 ```js
 export default {
-  async fetch(request, env) {
-    using foo = env.MY_SERVICE.foo();
-    let baz = await foo.bar.baz();
-    return new Response(baz);
-  }
-}
+	async fetch(request, env) {
+		using foo = env.MY_SERVICE.foo();
+		let baz = await foo.bar.baz();
+		return new Response(baz);
+	},
+};
 ```
 
 If the initial RPC ends up throwing an exception, then any pipelined calls will also fail with the same exception
@@ -236,4 +245,4 @@ Currently, this proxying only lasts until the end of the Workers' execution cont
 
 ## Limitations
 
-* [Smart Placement](/workers/configuration/smart-placement/) is currently ignored when making RPC calls. If Smart Placement is enabled for Worker A, and Worker B declares a [Service Binding](/workers/runtime-apis/bindings) to it, when Worker B calls Worker A via RPC, Worker A will run locally, on the same machine.
+- [Smart Placement](/workers/configuration/smart-placement/) is currently ignored when making RPC calls. If Smart Placement is enabled for Worker A, and Worker B declares a [Service Binding](/workers/runtime-apis/bindings) to it, when Worker B calls Worker A via RPC, Worker A will run locally, on the same machine.

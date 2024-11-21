@@ -11,16 +11,17 @@ description: Use a configuration file to customize the
 
 import { Render, Type, MetaInfo } from "~/components";
 
-Wrangler optionally uses a `wrangler.toml` configuration file to customize the development and deployment setup for a Worker.
+Wrangler optionally uses a `wrangler.json`/`wrangler.toml` file to customize the development and deployment setup for a Worker.
 
-:::caution
+:::note
 
-Wrangler currently supports an `--experimental-json-config` flag, which will read your configuration from a `wrangler.json` file, rather than `wrangler.toml`. The format of this file is exactly the same as the `wrangler.toml` configuration file, except that the syntax is `JSON` rather than `TOML`. This is experimental, and is not recommended for production use.
+As of Wrangler v3.REPLACEME Wrangler supports both JSON (`wrangler.json`) and TOML (`wrangler.toml`) for it's configuration file. Prior to that version, only `wrangler.toml` was supported. The format of Wrangler's configuration file is exactly the same across both languages, except that the syntax is `JSON` rather than `TOML`. Throughout this page and the rest of Cloudflare's documentation config snippets are provided as both JSON and TOML.
+
 :::
 
-It is best practice to treat `wrangler.toml` as the [source of truth](#source-of-truth) for configuring a Worker.
+It is best practice to treat Wrangler's configuration file as the [source of truth](#source-of-truth) for configuring a Worker.
 
-## Sample `wrangler.toml` configuration
+## Sample Wrangler configuration
 
 import { WranglerConfig } from "~/components";
 
@@ -188,7 +189,7 @@ At a minimum, the `name`, `main` and `compatibility_date` keys are required to d
 
 ### Usage model
 
-As of March 1, 2024 the [usage model](/workers/platform/pricing/#workers) configured in your Worker's `wrangler.toml` will be ignored. The [Standard](/workers/platform/pricing/#example-pricing-standard-usage-model) usage model applies.
+As of March 1, 2024 the [usage model](/workers/platform/pricing/#workers) configured in your Worker's configuration file will be ignored. The [Standard](/workers/platform/pricing/#example-pricing-standard-usage-model) usage model applies.
 
 Some Workers Enterprise customers maintain the ability to change usage models. Your usage model must be configured through the Cloudflare dashboard by going to **Workers & Pages** > select your Worker > **Settings** > **Usage Model**.
 
@@ -249,10 +250,6 @@ Example:
 <WranglerConfig>
 
 ```toml title="wrangler.toml"
-route = { pattern = "example.com", custom_domain = true }
-
-# or
-
 routes = [
 	{ pattern = "shop.example.com", custom_domain = true }
 ]
@@ -448,10 +445,6 @@ Example:
 <WranglerConfig>
 
 ```toml title="wrangler.toml"
-browser = { binding = "<BINDING_NAME>" }
-
-# or
-
 [browser]
 binding = "<BINDING_NAME>"
 ```
@@ -497,12 +490,6 @@ Example:
 <WranglerConfig>
 
 ```toml title="wrangler.toml"
-d1_databases = [
-  { binding = "<BINDING_NAME>", database_name = "<DATABASE_NAME>", database_id = "<DATABASE_ID>" }
-]
-
-# or
-
 [[d1_databases]]
 binding = "<BINDING_NAME>"
 database_name = "<DATABASE_NAME>"
@@ -567,12 +554,6 @@ Example:
 <WranglerConfig>
 
 ```toml title="wrangler.toml"
-durable_objects.bindings = [
-  { name = "<BINDING_NAME>", class_name = "<CLASS_NAME>" }
-]
-
-# or
-
 [[durable_objects.bindings]]
 name = "<BINDING_NAME>"
 class_name = "<CLASS_NAME>"
@@ -706,13 +687,6 @@ Example:
 <WranglerConfig>
 
 ```toml title="wrangler.toml"
-kv_namespaces = [
-  { binding = "<BINDING_NAME1>", id = "<NAMESPACE_ID1>" },
-  { binding = "<BINDING_NAME2>", id = "<NAMESPACE_ID2>" }
-]
-
-# or
-
 [[kv_namespaces]]
 binding = "<BINDING_NAME1>"
 id = "<NAMESPACE_ID1>"
@@ -838,13 +812,6 @@ Example:
 <WranglerConfig>
 
 ```toml title="wrangler.toml"
-r2_buckets  = [
-  { binding = "<BINDING_NAME1>", bucket_name = "<BUCKET_NAME1>"},
-  { binding = "<BINDING_NAME2>", bucket_name = "<BUCKET_NAME2>"}
-]
-
-# or
-
 [[r2_buckets]]
 binding = "<BINDING_NAME1>"
 bucket_name = "<BUCKET_NAME1>"
@@ -875,12 +842,6 @@ Example:
 <WranglerConfig>
 
 ```toml title="wrangler.toml"
-vectorize  = [
-  { binding = "<BINDING_NAME>", index_name = "<INDEX_NAME>"}
-]
-
-# or
-
 [[vectorize]]
 binding = "<BINDING_NAME>"
 index_name = "<INDEX_NAME>"
@@ -911,12 +872,6 @@ Example:
 <WranglerConfig>
 
 ```toml title="wrangler.toml"
-services = [
-  { binding = "<BINDING_NAME>", service = "<WORKER_NAME>", entrypoint = "<ENTRYPOINT_NAME>" }
-]
-
-# or
-
 [[services]]
 binding = "<BINDING_NAME>"
 service = "<WORKER_NAME>"
@@ -948,10 +903,6 @@ Example:
 <WranglerConfig>
 
 ```toml
-analytics_engine_datasets = [{ binding = "<BINDING_NAME>", dataset = "<DATASET_NAME>" }]
-
-# or
-
 [[analytics_engine_datasets]]
 binding = "<BINDING_NAME>"
 dataset = "<DATASET_NAME>"
@@ -973,18 +924,11 @@ To create a [binding](/workers/runtime-apis/bindings/) to an mTLS certificate fo
 
   - The ID of the certificate. Wrangler displays this via the `mtls-certificate upload` and `mtls-certificate list` commands.
 
-Example of a `wrangler.toml` configuration that includes an mTLS certificate binding:
+Example of a Wrangler configuration file that includes an mTLS certificate binding:
 
 <WranglerConfig>
 
 ```toml title="wrangler.toml"
-mtls_certificates = [
-    { binding = "<BINDING_NAME1>", certificate_id = "<CERTIFICATE_ID1>" },
-    { binding = "<BINDING_NAME2>", certificate_id = "<CERTIFICATE_ID2>" }
-]
-
-# or
-
 [[mtls_certificates]]
 binding = "<BINDING_NAME1>"
 certificate_id = "<CERTIFICATE_ID1>"
@@ -1016,10 +960,6 @@ Example:
 <WranglerConfig>
 
 ```toml
-ai = { binding = "<AI>" }
-
-# or
-
 [ai]
 binding = "AI" # available in your Worker code on `env.AI`
 ```
@@ -1179,8 +1119,6 @@ You can configure Wrangler to replace all calls to import a particular package w
 export const bar = "baz";
 ```
 
-</WranglerConfig>
-
 With the configuration above, any calls to `import` or `require()` the module `foo` will be aliased to point to your replacement module:
 
 ```js
@@ -1188,8 +1126,6 @@ import { bar } from "foo";
 
 console.log(bar); // returns "baz"
 ```
-
-</WranglerConfig>
 
 ### Example: Aliasing dependencies from NPM
 
@@ -1214,8 +1150,6 @@ You can alias all imports of `node-fetch` to instead point directly to the `fetc
 export default fetch;
 ```
 
-</WranglerConfig>
-
 ### Example: Aliasing Node.js APIs
 
 You can use module aliasing to provide your own polyfill implementation of a Node.js API that is not yet available in the Workers runtime.
@@ -1236,8 +1170,6 @@ export function readFile() {
 	// ...
 }
 ```
-
-</WranglerConfig>
 
 In many cases, this allows you to work provide just enough of an API to make a dependency work. You can learn more about Cloudflare Workers' support for Node.js APIs on the [Cloudflare Workers Node.js API documentation page](/workers/runtime-apis/nodejs/).
 
@@ -1271,7 +1203,7 @@ Consider using [Cloudflare Pages](/pages/) for hosting static applications inste
 
 - `bucket` <Type text="string" /> <MetaInfo text="required" />
 
-  - The directory containing your static assets. It must be a path relative to your `wrangler.toml` file.
+  - The directory containing your static assets. It must be a path relative to your Wrangler configuration file.
 
 - `include` <Type text="string[]" /> <MetaInfo text="optional" />
 
@@ -1311,20 +1243,18 @@ Example:
 $ HTTP_PROXY=http://localhost:8080 wrangler dev
 ```
 
-</WranglerConfig>
-
 If your IT team has configured your computer's proxy settings, be aware that the first non-empty environment variable in this list will be used when Wrangler makes outgoing requests.
 
 For example, if both `https_proxy` and `http_proxy` are set, Wrangler will only use `https_proxy` for outgoing requests.
 
 ## Source of truth
 
-We recommend treating your `wrangler.toml` file as the source of truth for your Worker configuration, and to avoid making changes to your Worker via the Cloudflare dashboard if you are using Wrangler.
+We recommend treating your Wrangler configuration file as the source of truth for your Worker configuration, and to avoid making changes to your Worker via the Cloudflare dashboard if you are using Wrangler.
 
-If you need to make changes to your Worker from the Cloudflare dashboard, the dashboard will generate a TOML snippet for you to copy into your `wrangler.toml` file, which will help ensure your `wrangler.toml` file is always up to date.
+If you need to make changes to your Worker from the Cloudflare dashboard, the dashboard will generate a TOML snippet for you to copy into your Wrangler configuration file, which will help ensure your Wrangler configuration file is always up to date.
 
-If you change your environment variables in the Cloudflare dashboard, Wrangler will override them the next time you deploy. If you want to disable this behavior, add `keep_vars = true` to your `wrangler.toml`.
+If you change your environment variables in the Cloudflare dashboard, Wrangler will override them the next time you deploy. If you want to disable this behavior, add `keep_vars = true` to your Wrangler configuration file.
 
-If you change your routes in the dashboard, Wrangler will override them in the next deploy with the routes you have set in your `wrangler.toml`. To manage routes via the Cloudflare dashboard only, remove any route and routes keys from your `wrangler.toml` file. Then add `workers_dev = false` to your `wrangler.toml` file. For more information, refer to [Deprecations](/workers/wrangler/deprecations/#other-deprecated-behavior).
+If you change your routes in the dashboard, Wrangler will override them in the next deploy with the routes you have set in your Wrangler configuration file. To manage routes via the Cloudflare dashboard only, remove any route and routes keys from your Wrangler configuration file. Then add `workers_dev = false` to your Wrangler configuration file. For more information, refer to [Deprecations](/workers/wrangler/deprecations/#other-deprecated-behavior).
 
 Wrangler will not delete your secrets (encrypted environment variables) unless you run `wrangler secret delete <key>`.
