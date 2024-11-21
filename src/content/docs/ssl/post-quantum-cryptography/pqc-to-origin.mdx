@@ -8,6 +8,8 @@ head: []
 description: Learn about post-quantum cryptography in connections from Cloudflare to your origin servers.
 ---
 
+import { Example } from "~/components";
+
 As explained in [About PQC](/ssl/post-quantum-cryptography/), Cloudflare has deployed support for hybrid key agreements, which include both the most common key agreement for TLS 1.3, X25519, and the post-quantum secure ML-KEM.
 
 With X25519, the [ClientHello](https://www.cloudflare.com/learning/ssl/what-happens-in-a-tls-handshake/) almost always fits within one network packet. However, with the addition of ML-KEM, the ClientHello is typically split across two packets.
@@ -49,13 +51,28 @@ The possible values are:
 
 ### Origin server
 
-If you set your Cloudflare zone to `supported`, you can make sure that your origin server will prefer the post-quantum key agreement by using Cloudflare's [fork of BoringSSL](https://github.com/cloudflare/boringssl-pq).
+To make sure that your origin server prefers the post-quantum key agreement:
 
-If you set your Cloudflare zone to `preferred`, you can use the `bssl` tool of BoringSSL to check that your origin supports the correct [key agreement](/ssl/post-quantum-cryptography/#hybrid-key-agreement).
+1. Use Cloudflare's [fork of BoringSSL](https://github.com/cloudflare/boringssl-pq).
+2. Use the `bssl` tool of BoringSSL:
 
-```txt
+- If you set your Cloudflare zone to `supported`, check that your origin prefers the hybrid key agreement, by using the `-disable-second-keyshare` parameter:
+
+<Example>
+```bash
+$ cd boringssl-pq && cmake -B build && make -C build
+$ build/bssl client -connect (your server):443 -curves X25519:X25519MLKEM768 -disable-second-keyshare
+```
+Verify that the `ECDHE curve` in the handshake output indicates `X25519MLKEM768`.
+</Example>
+
+- If you set your Cloudflare zone to `preferred`, check that your origin supports the correct key agreement:
+
+<Example>
+```bash
 $ bssl client -connect (your server):443 -curves X25519MLKEM768
 ```
-
+Verify that the `ECDHE curve` in the handshake output indicates `X25519MLKEM768`.
+</Example>
 
 [^1]: When, to remove a round trip, a client makes a guess of what the server supports.
