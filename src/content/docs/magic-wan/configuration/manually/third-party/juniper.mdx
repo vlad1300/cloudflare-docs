@@ -34,7 +34,7 @@ This section of the document will cover the configuration of:
 	- The IP addresses used for the Interface address must be a unique RFC1918 address (`/31` or `/30`).
 	- The **Customer endpoint** is the same IP specified for the first tunnel.
 	- The **Cloudflare Endpoint** for the second tunnel will be the second Cloudflare anycast IP provisioned for your account.
-3. Select **Add tunnels**. We also recommend selecting **Test Tunnels** to ensure that the settings do not conflict with any other tunnels defined in your account and that the correct Anycast IP addresses are specified.
+3. Select **Add tunnels**. We also recommend selecting **Test Tunnels** to ensure that the settings do not conflict with any other tunnels defined in your account and that the correct anycast IP addresses are specified.
 4. Because we chose to add a pre-shared key at a later stage, you will see a warning indicator next to the tunnel names after creating them. This is expected behavior and  indicates there is no pre-shared key associated with the tunnel.
 5. Select **Edit** next to one of the tunnels to generate a pre-shared key.
 6. Select **Generate a new pre-shared key** > **Update and generate a pre-shared key**. Make note of the pre-shared key and store it somewhere safe.
@@ -79,7 +79,7 @@ The following elements will be configured on the Juniper SRX firewall(s):
 - Assign tunnel interfaces to a security zone
 - Allow required protocols to both the tunnel and untrust security zones
 - IKE configuration
-- IPSec configuration
+- IPsec configuration
 - Static routes
 - Security policies
 
@@ -110,7 +110,7 @@ unit 1 {
 }
 ```
 
-### Security Zone (cloudflare) - tunnel interfaces
+### Security Zone (Cloudflare) - tunnel interfaces
 
 Define a security zone and add both tunnel interfaces to it. At a minimum, the interfaces should allow ping, but this zone only contains point-to-point connections between the firewall and the customer network namespace. Setting it to `all` for system-services and protocols should be fine.
 
@@ -188,7 +188,7 @@ set security ike proposal cf_ike_magic_wan_prop lifetime-seconds 28800
 
 #### IKE policies
 
-Define two IKE policies — one for each of the two Magic IPSec tunnels:
+Define two IKE policies — one for each of the two Magic IPsec tunnels:
 
 **Tunnel 1 (SRX220_IPSEC_01)**
 
@@ -230,11 +230,11 @@ set security ike gateway cf_magic_wan_gw_02 external-interface ge-0/0/2.0
 set security ike gateway cf_magic_wan_gw_02 version v2-only
 ```
 
-### Phase 2 - IPSec
+### Phase 2 - IPsec
 
 #### IPsec proposal
 
-Add an IPSec proposal that specifies the [Phase 2 Configuration Parameters](/magic-wan/reference/tunnels/#supported-configuration-parameters):
+Add an IPsec proposal that specifies the [Phase 2 Configuration Parameters](/magic-wan/reference/tunnels/#supported-configuration-parameters):
 
 ```txt
 set security ipsec proposal cf_ipsec_magic_wan_prop authentication-algorithm hmac-sha-256-128
@@ -244,7 +244,7 @@ set security ipsec proposal cf_ipsec_magic_wan_prop lifetime-seconds 28800
 
 #### IPsec policies
 
-Define two IPsec policies — one for each of the two Magic IPSec tunnels. It is crucial to ensure that:
+Define two IPsec policies — one for each of the two Magic IPsec tunnels. It is crucial to ensure that:
 
 - [Anti-replay](/magic-wan/reference/anti-replay-protection/) protection is disabled.
   - Use [`no-anti-replay`](https://www.juniper.net/documentation/us/en/software/junos/interfaces-adaptive-services/topics/ref/statement/no-anti-replay-edit-services.html) as the setting
@@ -317,7 +317,7 @@ Define security policies to permit traffic flows destined for Magic WAN protecte
 
 There are two very simple rules to allow traffic bidirectionally — it is generally recommended to start with a similar policy, then to add more stringent rules once general connectivity is established successfully.
 
-**From *cloudflare* to *trust*:**
+**From Cloudflare to *trust*:**
 
 ```txt
 set security policies from-zone cloudflare to-zone trust policy cloudflare_to_trust match source-address any
@@ -346,7 +346,7 @@ policy trust_to_cloudflare_permit {
 }
 ```
 
-**From *trust* to *cloudflare*:**
+**From *trust* to *Cloudflare*:**
 
 ```txt
 set security policies from-zone trust to-zone cloudflare policy trust_to_cloudflare_permit match source-address any
