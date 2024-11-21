@@ -218,7 +218,7 @@ crons = [ "*/5 * * * *" ]
 
 In this example, we will also need to use Cloudflare KV to save the latest checked event IDs which allows us to know what events are new. Once you have created a KV, you can head back to the `wranglers.toml` file and add the following sections:
 
-import { WranglerConfig } from "~/components";
+
 
 <WranglerConfig>
 
@@ -374,7 +374,7 @@ If you have [Email Routing][email-routing] enabled for your domain, you can also
 
 For this alert to work, you will need to configure the proper email bindings in the [`wrangler.toml`][wrangler-send-email] file.
 
-import { WranglerConfig } from "~/components";
+
 
 <WranglerConfig>
 

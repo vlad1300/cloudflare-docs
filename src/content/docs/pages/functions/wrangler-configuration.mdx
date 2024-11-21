@@ -77,7 +77,7 @@ Before you could use `wrangler.toml` to define your preview and production confi
 
 If you have been using `wrangler.toml` for local development, you may already have a file in your Pages project that looks like this:
 
-import { WranglerConfig } from "~/components";
+
 
 <WranglerConfig>
 
@@ -155,7 +155,7 @@ With `wrangler.toml` you can quickly set configuration across your local environ
 
 `wrangler.toml` works locally when using `wrangler pages dev`. This means that you can test out configuration changes quickly without a need to login to the Cloudflare dashboard. Refer to the following config file for an example:
 
-import { WranglerConfig } from "~/components";
+
 
 <WranglerConfig>
 
@@ -222,7 +222,7 @@ Unlike [Workers Environments](/workers/wrangler/configuration/#environments), `p
 
 Refer to the following `wrangler.toml` configuration file for an example of how to override preview deployment configuration:
 
-import { WranglerConfig } from "~/components";
+
 
 <WranglerConfig>
 
@@ -251,7 +251,7 @@ If you deployed this file via `wrangler pages deploy`, `name`, `pages_build_outp
 
 If you wanted to have configuration values apply to local and preview, but override production, your file would look like this:
 
-import { WranglerConfig } from "~/components";
+
 
 <WranglerConfig>
 
@@ -278,7 +278,7 @@ API_KEY = "8901234bfgd"
 
 You can always be explicit and override both preview and production:
 
-import { WranglerConfig } from "~/components";
+
 
 <WranglerConfig>
 
@@ -352,7 +352,7 @@ Non-inheritable keys are configurable at the top-level, but, if any one non-inhe
 
 For example, this configuration will not work:
 
-import { WranglerConfig } from "~/components";
+
 
 <WranglerConfig>
 

@@ -212,7 +212,7 @@ Migrations are performed through the `[[migrations]]` configurations key in your
 
 The Durable Object migration to create a new Durable Object class will look like the following in your Worker's `wrangler.toml` file:
 
-import { WranglerConfig } from "~/components";
+
 
 <WranglerConfig>
 
@@ -236,7 +236,7 @@ A Durable Object class can only have a single storage type, which cannot be chan
 
 To configure SQL storage and API, replace `new_classes` with `new_sqlite_classes` in your Worker's `wrangler.toml` file:
 
-import { WranglerConfig } from "~/components";
+
 
 <WranglerConfig>
 

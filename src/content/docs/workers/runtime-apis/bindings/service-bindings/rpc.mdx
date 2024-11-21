@@ -109,7 +109,7 @@ You can also export any number of named `WorkerEntrypoint` classes from within a
 
 You can use this to group multiple pieces of compute together. For example, you might create a distinct `WorkerEntrypoint` for each permission role in your application, and use these to provide role-specific RPC methods:
 
-import { WranglerConfig } from "~/components";
+
 
 <WranglerConfig>
 
@@ -168,7 +168,7 @@ export default class extends WorkerEntrypoint {
 
 You can then declare a Service binding directly to `AdminEntrypoint` in another Worker:
 
-import { WranglerConfig } from "~/components";
+
 
 <WranglerConfig>
 

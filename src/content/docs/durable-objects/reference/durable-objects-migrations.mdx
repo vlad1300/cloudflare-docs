@@ -84,7 +84,7 @@ new_classes = ["DurableObjectExample"] # Array of new classes
 
 Each migration in the list can have multiple directives, and multiple migrations can be specified as your project grows in complexity. For example, you may want to rename the `DurableObjectExample` class to `UpdatedName` and delete an outdated `DeprecatedClass` entirely.
 
-import { WranglerConfig } from "~/components";
+
 
 <WranglerConfig>
 
@@ -119,7 +119,7 @@ The new beta version of Durable Objects is available where each Durable Object h
 
 To allow a new Durable Object class to use a SQLite storage backend, use `new_sqlite_classes` on the migration in your Worker's `wrangler.toml` file:
 
-import { WranglerConfig } from "~/components";
+
 
 <WranglerConfig>
 

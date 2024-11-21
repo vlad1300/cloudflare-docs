@@ -55,7 +55,7 @@ compatibility_date to 2024-09-23 or later.
 
 A [growing subset](/workers/runtime-apis/nodejs/) of Node.js APIs are available directly as [Runtime APIs](/workers/runtime-apis/nodejs), with no need to add polyfills to your own code. To enable these APIs in your Worker, add the `nodejs_compat` compatibility flag to your `wrangler.toml`:
 
-import { WranglerConfig } from "~/components";
+
 
 <WranglerConfig>
 
@@ -69,7 +69,7 @@ As additional Node.js APIs are added, they will be made available under the `nod
 
 The Node.js `AsyncLocalStorage` API is a particularly useful feature for Workers. To enable only the `AsyncLocalStorage` API, use the `nodejs_als` compatibility flag.
 
-import { WranglerConfig } from "~/components";
+
 
 <WranglerConfig>
 
