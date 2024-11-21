@@ -6,15 +6,18 @@ description: Adding source maps and generating stack traces for Pages.
 sidebar:
   badge:
     text: Beta
+
 ---
 
-import { Render } from "~/components";
+import { Render } from "~/components"
 
 <Render file="source-maps" product="workers" />
 
 :::caution
 
+
 Support for uploading source maps for Pages is available now in open beta. Minimum required Wrangler version: 3.60.0.
+
 
 :::
 
@@ -43,10 +46,12 @@ You can then view the stack trace when streaming [real-time logs](/pages/functio
 
 :::note
 
+
 The source map is retrieved after your Pages Function invocation completes — it's an asynchronous process that does not impact your applications's CPU utilization or performance. Source maps are not accessible inside the application at runtime, if you `console.log()` the [stack property](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Error/stack), you will not get a deobfuscated stack trace.
+
 
 :::
 
 ## Related resources
 
-- [Real-time logs](/pages/functions/debugging-and-logging/) - Learn how to capture Pages logs in real-time.
+* [Real-time logs](/pages/functions/debugging-and-logging/) - Learn how to capture Pages logs in real-time.

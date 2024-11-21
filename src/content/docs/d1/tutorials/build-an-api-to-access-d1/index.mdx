@@ -223,9 +223,9 @@ Make a note of the displayed `database_name` and `database_id`. You will use thi
 1. From your `d1-http` folder, open the `wrangler.toml` file, Wrangler's configuration file.
 2. Add the following binding in the file. Make sure that the `database_name` and the `database_id` are correct.
 
-import { WranglerConfig } from "~/components";
+    import { WranglerConfig } from "~/components";
 
-<WranglerConfig>
+    <WranglerConfig>
 
     ```toml
     [[d1_databases]]
@@ -234,7 +234,7 @@ import { WranglerConfig } from "~/components";
     database_id = "1234567890"
     ```
 
-</WranglerConfig>
+    </WranglerConfig>
 
 3.  In your `src/index.ts` file, update the `Bindings` type by adding `DB: D1Database`.
 

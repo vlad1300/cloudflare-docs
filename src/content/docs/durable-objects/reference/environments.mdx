@@ -3,6 +3,7 @@ title: Environments
 pcx_content_type: concept
 sidebar:
   order: 9
+
 ---
 
 [Wrangler](/workers/wrangler/install-and-update/) allows you to deploy the same Worker application with different configuration for each [environment](/workers/wrangler/environments/).
@@ -26,6 +27,8 @@ durable_objects.bindings = [
 
 Because Wrangler appends the [environment name](/workers/wrangler/environments/) to the top-level name when publishing, for a Worker named `worker-name` the above example is equivalent to:
 
+import { WranglerConfig } from "~/components";
+
 <WranglerConfig>
 
 ```toml
@@ -40,6 +43,8 @@ durable_objects.bindings = [
 `"EXAMPLE_CLASS"` in the staging environment is bound to a different Worker code name compared to the top-level `"EXAMPLE_CLASS"` binding, and will therefore access different Durable Objects with different persistent storage.
 
 If you want an environment-specific binding that accesses the same Objects as the top-level binding, specify the top-level Worker code name explicitly using `script_name`:
+
+import { WranglerConfig } from "~/components";
 
 <WranglerConfig>
 

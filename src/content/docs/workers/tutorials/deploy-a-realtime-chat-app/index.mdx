@@ -68,6 +68,8 @@ If you have specified your zone ID in the environment of your `wrangler.toml`, y
 
 To configure a subdomain in your `wrangler.toml`, add the following to your environment:
 
+import { WranglerConfig } from "~/components";
+
 <WranglerConfig>
 
 ```toml
@@ -88,6 +90,8 @@ To test your live application:
 ## Uninstall your application
 
 To uninstall your chat application, modify your `wrangler.toml` file to remove the `durable_objects` bindings and add a `deleted_classes` migration:
+
+import { WranglerConfig } from "~/components";
 
 <WranglerConfig>
 

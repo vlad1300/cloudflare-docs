@@ -3,6 +3,7 @@ title: Environments
 pcx_content_type: configuration
 sidebar:
   order: 9
+
 ---
 
 [Environments](/workers/wrangler/environments/) are different contexts that your code runs in. Cloudflare Developer Platform allows you to create and manage different environments. Through environments, you can deploy the same project to multiple places under multiple names.
@@ -35,12 +36,18 @@ In the code above, the `staging` environment is using a different database (`DAT
 
 If you need to specify different D1 databases for different environments, your `wrangler.toml` may contain bindings that resemble the following:
 
+import { WranglerConfig } from "~/components";
+
+<WranglerConfig>
+
 ```toml
 [[production.d1_databases]]
 binding = "DB"
 database_name = "DATABASE_NAME"
 database_id = "DATABASE_ID"
 ```
+
+</WranglerConfig>
 
 In the above configuration:
 
@@ -65,6 +72,10 @@ Therefore, the above binding is equivalent to:
 
 ### Example
 
+import { WranglerConfig } from "~/components";
+
+<WranglerConfig>
+
 ```toml
 [[env.staging.d1_databases]]
 binding = "BINDING_NAME_1"
@@ -77,6 +88,8 @@ database_name = "DATABASE_NAME_2"
 database_id = "UUID_2"
 
 ```
+
+</WranglerConfig>
 
 The above is equivalent to the following structure in JSON:
 

@@ -5,9 +5,10 @@ head:
   - tag: title
     content: Service bindings - RPC (WorkerEntrypoint)
 description: Facilitate Worker-to-Worker communication via RPC.
+
 ---
 
-import { DirectoryListing, Render } from "~/components";
+import { DirectoryListing, Render } from "~/components"
 
 [Service bindings](/workers/runtime-apis/bindings/service-bindings) allow one Worker to call into another, without going through a publicly-accessible URL.
 
@@ -36,9 +37,7 @@ To provide RPC methods from your Worker, you must extend the `WorkerEntrypoint` 
 import { WorkerEntrypoint } from "cloudflare:workers";
 
 export default class extends WorkerEntrypoint {
-	async add(a, b) {
-		return a + b;
-	}
+  async add(a, b) { return a + b; }
 }
 ```
 
@@ -69,13 +68,11 @@ Can access it by calling `this.env.GREETING`:
 import { WorkerEntrypoint } from "cloudflare:workers";
 
 export default class extends WorkerEntrypoint {
-	fetch() {
-		return new Response("Hello from my-worker");
-	}
+  fetch() { return new Response("Hello from my-worker"); }
 
-	async greet(name) {
-		return this.env.GREETING + name;
-	}
+  async greet(name) {
+    return this.env.GREETING + name;
+  }
 }
 ```
 
@@ -91,20 +88,18 @@ For example, you can extend the lifetime of the invocation context by calling th
 import { WorkerEntrypoint } from "cloudflare:workers";
 
 export default class extends WorkerEntrypoint {
-	fetch() {
-		return new Response("Hello from my-worker");
-	}
+  fetch() { return new Response("Hello from my-worker"); }
 
-	async signup(email, name) {
-		// sendEvent() will continue running, even after this method returns a value to the caller
-		this.ctx.waitUntil(this.#sendEvent("signup", email));
-		// Perform any other work
-		return "Success";
-	}
+  async signup(email, name) {
+    // sendEvent() will continue running, even after this method returns a value to the caller
+    this.ctx.waitUntil(this.#sendEvent("signup", email))
+    // Perform any other work
+    return "Success";
+  }
 
-	async #sendEvent(eventName, email) {
-		//...
-	}
+  async #sendEvent(eventName, email) {
+    //...
+  }
 }
 ```
 
@@ -113,6 +108,8 @@ export default class extends WorkerEntrypoint {
 You can also export any number of named `WorkerEntrypoint` classes from within a single Worker, in addition to the default export. You can then declare a Service binding to a specific named entrypoint.
 
 You can use this to group multiple pieces of compute together. For example, you might create a distinct `WorkerEntrypoint` for each permission role in your application, and use these to provide role-specific RPC methods:
+
+import { WranglerConfig } from "~/components";
 
 <WranglerConfig>
 
@@ -131,45 +128,47 @@ database_id = "<unique-ID-for-your-database>"
 import { WorkerEntrypoint } from "cloudflare:workers";
 
 export class AdminEntrypoint extends WorkerEntrypoint {
-	async createUser(username) {
-		await this.env.D1.prepare("INSERT INTO users (username) VALUES (?)")
-			.bind(username)
-			.run();
-	}
+  async createUser(username) {
+    await this.env.D1.prepare("INSERT INTO users (username) VALUES (?)")
+      .bind(username)
+      .run();
+  }
 
-	async deleteUser(username) {
-		await this.env.D1.prepare("DELETE FROM users WHERE username = ?")
-			.bind(username)
-			.run();
-	}
+  async deleteUser(username) {
+    await this.env.D1.prepare("DELETE FROM users WHERE username = ?")
+      .bind(username)
+      .run();
+  }
 }
 
 export class UserEntrypoint extends WorkerEntrypoint {
-	async getTasks(userId) {
-		return await this.env.D1.prepare(
-			"SELECT title FROM tasks WHERE user_id = ?",
-		)
-			.bind(userId)
-			.all();
-	}
+  async getTasks(userId) {
+    return await this.env.D1.prepare(
+      "SELECT title FROM tasks WHERE user_id = ?"
+    )
+      .bind(userId)
+      .all();
+  }
 
-	async createTask(userId, title) {
-		await this.env.D1.prepare(
-			"INSERT INTO tasks (user_id, title) VALUES (?, ?)",
-		)
-			.bind(userId, title)
-			.run();
-	}
+  async createTask(userId, title) {
+    await this.env.D1.prepare(
+      "INSERT INTO tasks (user_id, title) VALUES (?, ?)"
+    )
+      .bind(userId, title)
+      .run();
+  }
 }
 
 export default class extends WorkerEntrypoint {
-	async fetch(request, env) {
-		return new Response("Hello from my to do app");
-	}
+  async fetch(request, env) {
+    return new Response("Hello from my to do app");
+  }
 }
 ```
 
 You can then declare a Service binding directly to `AdminEntrypoint` in another Worker:
+
+import { WranglerConfig } from "~/components";
 
 <WranglerConfig>
 
@@ -186,10 +185,10 @@ entrypoint = "AdminEntrypoint"
 
 ```js
 export default {
-	async fetch(request, env) {
-		await env.ADMIN.createUser("aNewUser");
-		return new Response("Hello from admin app");
-	},
+  async fetch(request, env) {
+    await env.ADMIN.createUser("aNewUser");
+    return new Response("Hello from admin app");
+  },
 };
 ```
 

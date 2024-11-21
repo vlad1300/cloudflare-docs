@@ -1,5 +1,6 @@
 ---
 {}
+
 ---
 
 Consider the following two Workers, connected via a [Service Binding](/workers/runtime-apis/bindings/service-bindings/rpc). The counter service provides the RPC method `newCounter()`, which returns a function:
@@ -19,21 +20,21 @@ main = "./src/counterService.js"
 import { WorkerEntrypoint } from "cloudflare:workers";
 
 export default class extends WorkerEntrypoint {
-	async fetch() {
-		return new Response("Hello from counter-service");
-	}
+  async fetch() { return new Response("Hello from counter-service"); }
 
-	async newCounter() {
-		let value = 0;
-		return (increment = 0) => {
-			value += increment;
-			return value;
-		};
-	}
+  async newCounter() {
+    let value = 0;
+    return (increment = 0) => {
+      value += increment;
+      return value;
+    }
+  }
 }
 ```
 
 This function can then be called by the client Worker:
+
+import { WranglerConfig } from "~/components";
 
 <WranglerConfig>
 
@@ -49,15 +50,15 @@ services = [
 
 ```js
 export default {
-	async fetch(request, env) {
-		using f = await env.COUNTER_SERVICE.newCounter();
-		await f(2); // returns 2
-		await f(1); // returns 3
-		const count = await f(-5); // returns -2
+  async fetch(request, env) {
+    using f = await env.COUNTER_SERVICE.newCounter();
+    await f(2);   // returns 2
+    await f(1);   // returns 3
+    const count = await f(-5);  // returns -2
 
-		return new Response(count);
-	},
-};
+    return new Response(count);
+  }
+}
 ```
 
 :::note

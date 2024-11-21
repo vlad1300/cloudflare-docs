@@ -99,6 +99,10 @@ It is important to include the `max_batch_size` of two to the consumer queue is 
 
 Your final `wrangler.toml` file should look similar to the example below.
 
+import { WranglerConfig } from "~/components";
+
+<WranglerConfig>
+
 ```toml title="wrangler.toml"
 #:schema node_modules/wrangler/config-schema.json
 name = "resend-rate-limit-queue"
@@ -116,6 +120,8 @@ max_batch_size = 2
 max_batch_timeout = 10
 max_retries = 3
 ```
+
+</WranglerConfig>
 
 ## 3. Add bindings to environment
 

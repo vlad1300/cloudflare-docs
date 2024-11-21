@@ -3,9 +3,10 @@ pcx_content_type: configuration
 title: Environment variables
 head: []
 description: Environment variables are a type of binding that allow you to attach text strings or JSON values to your Worker
+
 ---
 
-import { Render, TabItem, Tabs } from "~/components";
+import { Render, TabItem, Tabs } from "~/components"
 
 ## Background
 
@@ -25,23 +26,23 @@ Refer to the following example on how to access the `API_HOST` environment varia
 
 ```js
 export default {
-	async fetch(request, env, ctx) {
-		return new Response(`API host: ${env.API_HOST}`);
-	},
-};
+  async fetch(request, env, ctx) {
+    return new Response(`API host: ${env.API_HOST}`);
+  }
+}
 ```
 
 </TabItem> <TabItem label="TypeScript" icon="seti:typescript">
 
 ```ts
 export interface Env {
-	API_HOST: string;
+  API_HOST: string;
 }
 
 export default {
-	async fetch(request, env, ctx): Promise<Response> {
-		return new Response(`API host: ${env.API_HOST}`);
-	},
+  async fetch(request, env, ctx): Promise<Response> {
+    return new Response(`API host: ${env.API_HOST}`);
+  }
 } satisfies ExportedHandler<Env>;
 ```
 
@@ -95,7 +96,9 @@ To add environment variables via the dashboard:
 
 :::caution[Plaintext strings and secrets]
 
+
 Select the **Secret** type if your environment variable is a [secret](/workers/configuration/secrets/).
+
 
 :::
 
@@ -103,4 +106,4 @@ Select the **Secret** type if your environment variable is a [secret](/workers/c
 
 ## Related resources
 
-- Learn how to access environment variables in [ES modules syntax](/workers/reference/migrate-to-module-workers/) for an optimized experience.
+* Learn how to access environment variables in [ES modules syntax](/workers/reference/migrate-to-module-workers/) for an optimized experience.

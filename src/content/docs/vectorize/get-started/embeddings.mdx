@@ -135,6 +135,8 @@ Before you deploy your embedding example, ensure your Worker uses your model cat
 
 From within the `embeddings-tutorial` directory, open your `wrangler.toml` file in your editor and add the new `[[ai]]` binding to make Workers AI's models available in your Worker:
 
+import { WranglerConfig } from "~/components";
+
 <WranglerConfig>
 
 ```toml

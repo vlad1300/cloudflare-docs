@@ -4,6 +4,7 @@ pcx_content_type: example
 type: example
 summary: Connect to a Broker using a Rust-based MQTT client.
 description: Connect to a Broker using a Rust-based MQTT client.
+
 ---
 
 Below is an example using the [paho.mqtt.rust](https://github.com/eclipse/paho.mqtt.rust) crate with the TOKEN authentication mode configured on a Broker.
@@ -12,16 +13,10 @@ The example below creates a simple subscriber, sends a message to the configured
 
 Make sure to set the `BROKER_URI` (e.g. `mqtts://YOUR-BROKER.YOUR-NAMESPACE.cloudflarepubsub.com`), `BROKER_TOKEN` (a valid auth token), and `BROKER_TOPIC` environmental variables before running the example program.
 
-import { WranglerConfig } from "~/components";
-
-<WranglerConfig>
-
 ```toml
 # in your Cargo.toml
 paho-mqtt = "0.11.1"
 ```
-
-</WranglerConfig>
 
 Create a file called `example.rs` with the following content, and use `cargo run` to build and run the example:
 

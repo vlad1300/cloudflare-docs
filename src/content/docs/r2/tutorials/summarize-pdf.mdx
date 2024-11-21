@@ -239,6 +239,8 @@ When you open the URL in your browser, you will see that there is a file upload 
 
 To handle the file upload, you will first need to add the R2 binding. In the `wrangler.toml` file, add the following code:
 
+import { WranglerConfig } from "~/components";
+
 <WranglerConfig>
 
 ```toml
@@ -307,10 +309,16 @@ npx wrangler queues create pdf-summarizer
 
 Add the binding to the `wrangler.toml` file:
 
+import { WranglerConfig } from "~/components";
+
+<WranglerConfig>
+
 ```toml title="wrangler.toml"
 [[queues.consumers]]
 queue = "pdf-summarizer"
 ```
+
+</WranglerConfig>
 
 ## 5. Handle event notifications
 
@@ -385,10 +393,16 @@ The above code does the following:
 
 To use Workers AI, you will need to add the Workers AI binding to the `wrangler.toml` file. The `wrangler.toml` file should contain the following code:
 
+import { WranglerConfig } from "~/components";
+
+<WranglerConfig>
+
 ```toml title="wrangler.toml"
 [ai]
 binding = "AI"
 ```
+
+</WranglerConfig>
 
 Execute the following command to add the AI type definition:
 

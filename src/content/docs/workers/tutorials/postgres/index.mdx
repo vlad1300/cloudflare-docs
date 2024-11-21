@@ -61,9 +61,15 @@ cd postgres-tutorial
 When creating your Worker application, [enable Node.js APIs](/workers/runtime-apis/nodejs/#enable-nodejs-with-workers) by including the
 "nodejs_compat_v2" compatibility flag to your `wrangler.toml`. This will be needed to use the library to connect to your PostgreSQL database.
 
+import { WranglerConfig } from "~/components";
+
+<WranglerConfig>
+
 ```toml title="wrangler.toml"
 compatibility_flags = ["nodejs_compat_v2"]
 ```
+
+</WranglerConfig>
 
 ## 2. Add the PostgreSQL connection library
 
@@ -120,6 +126,8 @@ DB_URL="<ENTER YOUR POSTGRESQL CONNECTION STRING>"
 ### Set explicit parameters
 
 Configure each database parameter as an [environment variable](/workers/configuration/environment-variables/) via the [Cloudflare dashboard](/workers/configuration/environment-variables/#add-environment-variables-via-the-dashboard) or in your `wrangler.toml` file. Refer to an example of a`wrangler.toml` file configuration:
+
+import { WranglerConfig } from "~/components";
 
 <WranglerConfig>
 
@@ -322,6 +330,10 @@ You can also use explicit parameters by following the [wrangler documentation fo
 
 This command outputs the Hyperdrive configuration `id` that will be used for your Hyperdrive [binding](/workers/runtime-apis/bindings/). Set up your binding by specifying the `id` in the `wrangler.toml` file.
 
+import { WranglerConfig } from "~/components";
+
+<WranglerConfig>
+
 ```toml {7-9}
 name = "hyperdrive-example"
 main = "src/index.ts"
@@ -333,6 +345,8 @@ compatibility_flags = ["nodejs_compat"]
 binding = "HYPERDRIVE"
 id = "<ID OF THE CREATED HYPERDRIVE CONFIGURATION>"
 ```
+
+</WranglerConfig>
 
 Create the types for your Hyperdrive binding using the following command:
 

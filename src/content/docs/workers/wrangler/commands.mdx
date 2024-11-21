@@ -1502,7 +1502,6 @@ wrangler workflows instances describe <WORKFLOW_NAME> <ID> [OPTIONS]
 # Passing `latest` instead of an explicit ID will describe the most recently queued instance
 wrangler workflows instances describe my-workflow latest
 ```
-
 ```sh output
 Workflow Name:         my-workflow
 Instance Id:           51c73fc8-7fd5-47d9-bd82-9e301506ee72
@@ -1568,7 +1567,6 @@ wrangler workflows describe <WORKFLOW_NAME> [OPTIONS]
 ### `trigger`
 
 Trigger (create) a Workflow instance.
-
 ```sh
 wrangler workflows trigger <WORKFLOW_NAME> <PARAMS> [OPTIONS]
 ```
@@ -1578,12 +1576,12 @@ wrangler workflows trigger <WORKFLOW_NAME> <PARAMS> [OPTIONS]
 - `PARAMS` <Type text="string" /> <MetaInfo text="optional" />
   - The parameters to pass to the Workflow as an event. Must be a JSON-encoded string.
 
-```sh
-# Pass optional params to the Workflow.
-wrangler workflows trigger my-workflow '{"hello":"world"}'
-```
+ ```sh
+ # Pass optional params to the Workflow.
+ wrangler workflows trigger my-workflow '{"hello":"world"}'
+ ```
 
-{/\*
+{/*
 
 ### `delete`
 
@@ -1596,7 +1594,7 @@ wrangler workflows delete <WORKFLOW_NAME> [OPTIONS]
 - `WORKFLOW_NAME` <Type text="string" /> <MetaInfo text="required" />
   - The name of a registered Workflow.
 
-\*/}
+*/}
 
 ## `tail`
 

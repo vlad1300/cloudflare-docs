@@ -83,27 +83,27 @@ To get started quickly, deploy our example Cloudflare Workers script by followin
    - `<TENANT_ID>`: your Entra ID **Directory (tenant) ID**, obtained when [setting up Entra ID as an identity provider](#1-set-up-entra-id-as-an-identity-provider).
    - `<CLIENT_ID>`: your Entra ID **Application (client) ID**, obtained when [setting up Entra ID as an identity provider](#1-set-up-entra-id-as-an-identity-provider).
 
-import { WranglerConfig } from "~/components";
+   import { WranglerConfig } from "~/components";
 
-<WranglerConfig>
+   <WranglerConfig>
 
-```toml
-name = "risky-users"
-compatibility_date = "2023-01-04"
-main = "src/index.js"
-workers_dev = false
+   ```toml
+   name = "risky-users"
+   compatibility_date = "2023-01-04"
+   main = "src/index.js"
+   workers_dev = false
 
-account_id = "<ACCOUNT-ID>"
+   account_id = "<ACCOUNT-ID>"
 
-[vars]
-AZURE_AD_TENANT_ID = "<TENANT-ID>"
-AZURE_AD_CLIENT_ID = "<CLIENT-ID>"
+   [vars]
+   AZURE_AD_TENANT_ID = "<TENANT-ID>"
+   AZURE_AD_CLIENT_ID = "<CLIENT-ID>"
 
-[triggers]
-crons = ["* * * * *"]
-```
+   [triggers]
+   crons = ["* * * * *"]
+   ```
 
-</WranglerConfig>
+   </WranglerConfig>
 
 :::note
 

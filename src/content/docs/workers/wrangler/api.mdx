@@ -342,7 +342,9 @@ The bindings supported by `getPlatformProxy` are:
 
     For example, you might have the following file read by `getPlatformProxy`.
 
-<WranglerConfig>
+    import { WranglerConfig } from "~/components";
+
+    <WranglerConfig>
 
     ```toml
     [[durable_objects.bindings]]
@@ -351,7 +353,7 @@ The bindings supported by `getPlatformProxy` are:
     script_name = "my-worker"
     ```
 
-</WranglerConfig>
+    </WranglerConfig>
 
     In order for this binding to be successfully proxied by `getPlatformProxy`, a worker named `my-worker`
     with a Durable Object declaration using the same `class_name` of `"MyDurableObject"` must be run

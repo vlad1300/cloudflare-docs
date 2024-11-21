@@ -54,12 +54,18 @@ To start a local development session:
 
 In this example, the Worker has access to local-only D1 database. The corresponding D1 binding in your `wrangler.toml` configuration file would resemble the following:
 
+import { WranglerConfig } from "~/components";
+
+<WranglerConfig>
+
 ```toml title="wrangler.toml"
 [[d1_databases]]
 binding = "DB"
 database_name = "test-db"
 database_id = "c020574a-5623-407b-be0c-cd192bab9545"
 ```
+
+</WranglerConfig>
 
 Note that `wrangler dev` separates local and production (remote) data. A local session does not have access to your production data by default. To access your production (remote) database, pass the `--remote` flag when calling `wrangler dev`. Any changes you make when running in `--remote` mode cannot be undone.
 
@@ -120,6 +126,8 @@ Users of wrangler `2.x` must use the `--persist` flag: previous versions of wran
 
 You can use Miniflare's [support for D1](https://miniflare.dev/storage/d1) to create D1 databases you can use for testing:
 
+import { WranglerConfig } from "~/components";
+
 <WranglerConfig>
 
 ```toml
@@ -155,6 +163,8 @@ console.log(results);
 Wrangler exposes an [`unstable_dev()`](/workers/wrangler/api/) that allows you to run a local HTTP server for testing Workers and D1. Run [migrations](/d1/reference/migrations/) against a local database by setting a `preview_database_id` in your `wrangler.toml` configuration.
 
 Given the below `wrangler.toml` configuration:
+
+import { WranglerConfig } from "~/components";
 
 <WranglerConfig>
 

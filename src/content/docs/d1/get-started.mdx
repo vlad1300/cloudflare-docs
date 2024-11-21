@@ -7,13 +7,13 @@ sidebar:
 ---
 
 import {
-	Render,
-	PackageManagers,
-	Steps,
-	FileTree,
-	Tabs,
-	TabItem,
-	TypeScriptExample,
+    Render,
+    PackageManagers,
+    Steps,
+    FileTree,
+    Tabs,
+    TabItem,
+    TypeScriptExample
 } from "~/components";
 
 This guide instructs you through:
@@ -176,24 +176,24 @@ You create bindings by updating your `wrangler.toml` file.
 1. Copy the lines obtained from [step 2](/d1/get-started/#2-create-a-database) from your terminal.
 2. Add them to the end of your `wrangler.toml` file.
 
-import { WranglerConfig } from "~/components";
+   import { WranglerConfig } from "~/components";
 
-<WranglerConfig>
+   <WranglerConfig>
 
-```toml
-[[d1_databases]]
-binding = "DB" # available in your Worker on env.DB
-database_name = "prod-d1-tutorial"
-database_id = "<unique-ID-for-your-database>"
-```
+   ```toml
+   [[d1_databases]]
+   binding = "DB" # available in your Worker on env.DB
+   database_name = "prod-d1-tutorial"
+   database_id = "<unique-ID-for-your-database>"
+   ```
 
-</WranglerConfig>
+   </WranglerConfig>
 
-Specifically:
+   Specifically:
 
-- The value (string) you set for `binding` is the **binding name**, and is used to reference this database in your Worker. In this tutorial, name your binding `DB`.
-- The binding name must be [a valid JavaScript variable name](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Grammar_and_types#variables). For example, `binding = "MY_DB"` or `binding = "productionDB"` would both be valid names for the binding.
-- Your binding is available in your Worker at `env.<BINDING_NAME>` and the D1 [client API](/d1/build-with-d1/d1-client-api/) is exposed on this binding.
+   - The value (string) you set for `binding` is the **binding name**, and is used to reference this database in your Worker. In this tutorial, name your binding `DB`.
+   - The binding name must be [a valid JavaScript variable name](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Grammar_and_types#variables). For example, `binding = "MY_DB"` or `binding = "productionDB"` would both be valid names for the binding.
+   - Your binding is available in your Worker at `env.<BINDING_NAME>` and the D1 [client API](/d1/build-with-d1/d1-client-api/) is exposed on this binding.
 
 </Steps>
 
