@@ -6,7 +6,7 @@ productArea: Developer platform
 productAreaLink: /workers/platform/changelog/platform/
 entries:
   - publish_date: "2024-11-21"
-    title: "Worker bindings "
+    title: "Fixed create instance API in Workers bindings"
     description: |-
       You can now call `create()` without any arguments when using the [Workers API](/workflows/build/workers-api/#create) for Workflows. Workflows will automatically generate the ID of the Workflow on your behalf.
 
