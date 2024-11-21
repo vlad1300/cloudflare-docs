@@ -76,9 +76,10 @@ account_id = "your-account-id"
 FOO = "default FOO value"
 BAR = "default BAR value"
 
-kv_namespaces = [
-  { binding = "FOO", id = "1a...", preview_id = "1b..." }
-]
+[[kv_namespaces]]
+binding = "FOO"
+id = "1a..."
+preview_id = "1b..."
 
 [env.helloworld]
 # Now adding configuration keys for the "helloworld" environment.
@@ -86,15 +87,16 @@ kv_namespaces = [
 name = "your-worker-helloworld"
 account_id = "your-other-account-id"
 
-[vars]
+[env.helloworld.vars]
 FOO = "env-helloworld FOO value"
 BAR = "env-helloworld BAR value"
 
-kv_namespaces = [
+[[env.helloworld.kv_namespaces]]
   # Redeclare kv namespace bindings for each environment
   # NOTE: In this case, passing new IDs because new `account_id` value.
-  { binding = "FOO", id = "888...", preview_id = "999..." }
-]
+binding = "FOO"
+id = "888..."
+preview_id = "999..."
 ```
 
 </WranglerConfig>
